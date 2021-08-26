@@ -37,6 +37,8 @@ dependencies {
     kaptTest("com.google.dagger:hilt-compiler:2.36")
     implementation(Hilt.hiltNavigation)
 
+    implementation(Ktor.android)
+
     debugImplementation(SquareUp.leakCanary)
     implementation("androidx.compose.ui:ui-tooling:1.0.1")
     val nav_version = "2.3.5"

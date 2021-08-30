@@ -4,14 +4,21 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class PhoneDto(
+data class PersonPhoneDto(
 
     @SerialName("home")
-    var home: String?,
+    var home: NumberDto,
 
     @SerialName("work")
-    var work: String?,
+    var work: NumberDto,
 
     @SerialName("mobile")
-    var mobile: String?,
+    var mobile: NumberDto
+)
+
+@Serializable
+data class NumberDto(
+
+    @SerialName("number")
+    var number: String?
 )

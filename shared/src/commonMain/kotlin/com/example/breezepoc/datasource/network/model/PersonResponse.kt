@@ -4,12 +4,8 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class PersonDto(
+data class PersonResponse(
 
-    @SerialName("id")
-    var id: Long,
-
-    @SerialName("person_details")
-    var personDetails: PersonDetailsDto
-
+    @SerialName("data")
+    var data: PersonDto
 )

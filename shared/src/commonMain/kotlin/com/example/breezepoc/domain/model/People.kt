@@ -1,5 +1,6 @@
 package com.example.breezepoc.domain.model
 
+
 data class Name(
     val first: String?,
     val last: String?,
@@ -15,15 +16,20 @@ data class Phone(
 
 )
 
-data class PersonDetails (
+data class PeopleDetails (
     val name: Name?,
     val phone: Phone?,
     val email: String?,
     val archived: Int,
-    val picture: String?
+    val profilePicture: String?
+)
+data class Person(
+    val id: Long?,
+    val personDetails: PeopleDetails?
 )
 
-data class Person(
-    val id: Long,
-    val personDetails: PersonDetails
+data class People(
+    val data: List<Person>,
 )
+
+

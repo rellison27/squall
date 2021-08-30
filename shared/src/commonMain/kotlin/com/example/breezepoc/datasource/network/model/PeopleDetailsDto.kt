@@ -4,20 +4,20 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class PersonDetailsDto(
+data class PeopleDetailsDto (
 
     @SerialName("name")
     var name: NameDto?,
 
-    @SerialName("profile_picture")
-    var profilePicture: String?,
+    @SerialName("phone")
+    var phone: PeoplePhoneDto?,
 
     @SerialName("email")
-    var email: PersonEmailDto?,
+    var email: String?,
 
     @SerialName("archived")
-    var archived: Boolean,
+    var archived: Int,
 
-    @SerialName("phone")
-    var phone: PersonPhoneDto?
+    @SerialName("profile_picture")
+    var profilePicture: String?,
 )

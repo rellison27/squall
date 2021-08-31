@@ -38,6 +38,6 @@ class PersonDetailsNetworkMapper constructor(
                 profilePicture = domainModel.profilePicture
             )
         }
-        return PeopleDetailsDto(NameDto("", ""), PeoplePhoneDto("", "", ""), "", 0, "")
+        return PeopleDetailsDto(NameDto("", "", "", "", ""), PeoplePhoneDto("", "", ""), "", 0, "")
     }
 }

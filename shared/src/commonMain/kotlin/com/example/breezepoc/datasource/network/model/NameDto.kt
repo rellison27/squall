@@ -8,17 +8,17 @@ import kotlinx.serialization.Serializable
 data class NameDto(
 
     @SerialName("first")
-    var first: String? = null,
+    var first: String?,
 
     @SerialName("last")
-    var last: String? = null,
+    var last: String?,
 
     @SerialName("middle")
-    var middle: String? = null,
+    var middle: String?,
 
     @SerialName("maiden")
-    var maiden: String? = null,
+    var maiden: String?,
 
     @SerialName("nick")
-    var nick: String? = null,
+    var nick: String?,
 )

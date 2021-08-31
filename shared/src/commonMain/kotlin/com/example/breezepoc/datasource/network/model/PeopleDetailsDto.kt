@@ -7,13 +7,13 @@ import kotlinx.serialization.Serializable
 data class PeopleDetailsDto (
 
     @SerialName("name")
-    var name: NameDto?,
+    var name: NameDto? = null,
 
     @SerialName("phone")
-    var phone: PeoplePhoneDto?,
+    var phone: PeoplePhoneDto? = null,
 
     @SerialName("email")
-    var email: String?,
+    var email: String? = null,
 
     @SerialName("archived")
     var archived: Int,

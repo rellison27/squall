@@ -6,23 +6,29 @@ import com.example.breezepoc.domain.model.util.DtoMapper
 
 class NameNetworkMapper constructor() : DtoMapper<NameDto, Name> {
 
-    override fun mapToDomainModel(model: NameDto): Name {
-        return Name(
-            first = model.first,
-            last = model.last,
-            middle = model.middle,
-            maiden = model.maiden,
-            nick = model.nick
-        )
+    override fun mapToDomainModel(model: NameDto?): Name {
+        if (model != null) {
+            return Name(
+                first = model.first,
+                last = model.last,
+                middle = model.middle,
+                maiden = model.maiden,
+                nick = model.nick
+            )
+        }
+        return Name(null, null, null, null, null)
     }
 
-    override fun mapFromDomainModel(domainModel: Name): NameDto {
-        return NameDto(
-            first = domainModel.first,
-            last = domainModel.last,
-            middle = domainModel.middle,
-            maiden = domainModel.maiden,
-            nick = domainModel.nick
-        )
+    override fun mapFromDomainModel(domainModel: Name?): NameDto {
+        if (domainModel != null) {
+            return NameDto(
+                first = domainModel.first,
+                last = domainModel.last,
+                middle = domainModel.middle,
+                maiden = domainModel.maiden,
+                nick = domainModel.nick
+            )
+        }
+        return NameDto(null, null, null, null, null)
     }
 }

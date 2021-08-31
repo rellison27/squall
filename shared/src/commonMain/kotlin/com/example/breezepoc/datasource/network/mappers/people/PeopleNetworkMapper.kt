@@ -4,7 +4,7 @@ import com.example.breezepoc.datasource.network.model.PeopleDto
 import com.example.breezepoc.domain.model.Person
 import com.example.breezepoc.domain.model.util.DtoMapper
 
-class PeopleListNetworkMapper constructor(
+class PeopleNetworkMapper constructor(
     private val personDetailsNetworkMapper: PersonDetailsNetworkMapper
 ): DtoMapper<PeopleDto, Person> {
 

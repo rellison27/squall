@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
                 url("$PEOPLE_URL")
                 header("Authorization", BEARER,)
             }.data
-            val mapped = peopleNetworkMapper.mapFromDomainList(people)
+            val mapped = peopleNetworkMapper.mapToDomainList(people)
             println("KtorTest: ${mapped.getOrNull(0)?.id}")
             println("KtorTest: ${mapped.getOrNull(0)?.personDetails?.name?.first}")
             println("KtorTest: ${mapped.getOrNull(0)?.personDetails?.name?.last}")

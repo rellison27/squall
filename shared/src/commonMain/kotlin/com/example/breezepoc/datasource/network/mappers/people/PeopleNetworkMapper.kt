@@ -28,7 +28,7 @@ class PeopleNetworkMapper constructor(
         return PeopleDto(null, null)
     }
 
-    fun mapFromDomainList(initial: List<PeopleDto>): List<Person> {
+    fun mapToDomainList(initial: List<PeopleDto>): List<Person> {
         return initial.map { mapToDomainModel(it) }
     }
 }

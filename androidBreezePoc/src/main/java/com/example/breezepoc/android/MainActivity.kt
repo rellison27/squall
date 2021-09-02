@@ -17,20 +17,20 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // getting people
-        CoroutineScope(Dispatchers.IO).launch {
-            val peopleService = PeopleServiceImpl(
-                httpClient = KtorClientFactory().build(),
-                baseUrl = ""
-            )
-            val people = peopleService.getPeople()
-            println("KtorTest: ${people.getOrNull(1)?.id}")
-            println("KtorTest: ${people.getOrNull(1)?.personDetails?.name?.first}")
-            println("KtorTest: ${people.getOrNull(1)?.personDetails?.name?.last}")
-            println("KtorTest: ${people.getOrNull(1)?.personDetails?.phone?.mobile}")
-            println("KtorTest: ${people.getOrNull(1)?.personDetails?.email}")
-            println("KtorTest: ${people.getOrNull(1)?.personDetails?.profilePicture}")
-        }
+        // getting person
+//        CoroutineScope(Dispatchers.IO).launch {
+//            val peopleService = PeopleServiceImpl(
+//                httpClient = KtorClientFactory().build(),
+//                baseUrl = ""
+//            )
+//            val person = peopleService.getPerson(26308818)
+//            println("KtorTest: ${person?.id}")
+//            println("KtorTest: ${person?.personDetails?.name?.first}")
+//            println("KtorTest: ${person?.personDetails?.name?.last}")
+//            println("KtorTest: ${person?.personDetails?.phone?.mobile?.number}")
+//            println("KtorTest: ${person?.personDetails?.email?.address}")
+//            println("KtorTest: ${person?.personDetails?.profilePicture}")
+//        }
         setContent{
             Navigation()
         }

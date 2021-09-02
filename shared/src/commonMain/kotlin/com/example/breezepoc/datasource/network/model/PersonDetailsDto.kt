@@ -16,8 +16,14 @@ data class PersonDetailsDto(
     var email: PersonEmailDto?,
 
     @SerialName("archived")
-    var archived: Boolean,
+    var archived: Boolean?,
+
+    @SerialName("address")
+    val address: AddressDto?,
+
+    @SerialName("birthdate")
+    val birthdate: String?,
 
     @SerialName("phone")
-    var phone: PersonPhoneDto?
+    val phone: PersonPhoneDto?
 )

@@ -2,7 +2,6 @@ package com.example.breezepoc.android.presentation.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.HiltViewModelFactory
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
@@ -25,7 +24,7 @@ fun Navigation(){
             PeopleListScreen(
                 onSelectPerson = { personId ->
                     navController.navigate(Screen.personDetail.route + "/$personId")
-                }
+                },
             )
         }
         composable(
@@ -36,7 +35,7 @@ fun Navigation(){
         ) { navBackStackEntry ->
             val factory = HiltViewModelFactory(LocalContext.current, navBackStackEntry)
             val viewModel: PersonDetailViewModel = viewModel("PersonDetailViewModel", factory)
-            PersonDetailScreen(personId = viewModel.personId.value)
+            PersonDetailScreen(person = viewModel.person.value)
         }
     }
 }

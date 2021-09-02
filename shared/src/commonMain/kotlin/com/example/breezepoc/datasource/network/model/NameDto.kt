@@ -1,6 +1,5 @@
 package com.example.breezepoc.datasource.network.model
 
-import com.example.breezepoc.domain.model.Name
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -8,17 +7,17 @@ import kotlinx.serialization.Serializable
 data class NameDto(
 
     @SerialName("first")
-    var first: String?,
+    val first: String?,
 
     @SerialName("last")
-    var last: String?,
+    val last: String?,
 
     @SerialName("middle")
-    var middle: String?,
+    val middle: String?,
 
     @SerialName("maiden")
-    var maiden: String?,
+    val maiden: String?,
 
     @SerialName("nick")
-    var nick: String?,
+    val nick: String?,
 )

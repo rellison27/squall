@@ -3,10 +3,9 @@ package com.example.breezepoc.datasource.network.mappers.people
 import com.example.breezepoc.datasource.network.model.NameDto
 import com.example.breezepoc.datasource.network.model.PeopleDetailsDto
 import com.example.breezepoc.datasource.network.model.PeoplePhoneDto
-import com.example.breezepoc.datasource.network.model.PersonEmailDto
-import com.example.breezepoc.domain.model.Name
-import com.example.breezepoc.domain.model.PeopleDetails
-import com.example.breezepoc.domain.model.Phone
+import com.example.breezepoc.domain.model.PeopleList.Name
+import com.example.breezepoc.domain.model.PeopleList.PeopleDetails
+import com.example.breezepoc.domain.model.PeopleList.Phone
 import com.example.breezepoc.domain.model.util.DtoMapper
 
 class PersonDetailsNetworkMapper constructor(
@@ -25,7 +24,7 @@ class PersonDetailsNetworkMapper constructor(
                 profilePicture = model.profilePicture
             )
         }
-        return PeopleDetails(Name("","","","", ""), Phone("","",""), "", 0, "")
+        return PeopleDetails(null, null, "", 0, "")
     }
 
     override fun mapFromDomainModel(domainModel: PeopleDetails?): PeopleDetailsDto {
@@ -38,6 +37,6 @@ class PersonDetailsNetworkMapper constructor(
                 profilePicture = domainModel.profilePicture
             )
         }
-        return PeopleDetailsDto(NameDto("", "", "", "", ""), PeoplePhoneDto("", "", ""), "", 0, "")
+        return PeopleDetailsDto(null, null, "", 0, "")
     }
 }

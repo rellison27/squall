@@ -1,13 +1,13 @@
 package com.example.breezepoc.datasource.network
 
-import com.example.breezepoc.domain.model.Person
+import com.example.breezepoc.domain.model.PeopleList.Person
+import com.example.breezepoc.domain.model.Person.SinglePerson
 
 interface PeopleService {
 
     suspend fun getPeople():List<Person>
 
-    // TODO: add a model for a single person api call
     suspend fun getPerson(
-        id: Long
-    ): Person
+        id: Int
+    ): SinglePerson
 }

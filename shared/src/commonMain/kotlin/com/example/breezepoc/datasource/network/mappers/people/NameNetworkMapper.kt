@@ -1,7 +1,7 @@
 package com.example.breezepoc.datasource.network.mappers.people
 
 import com.example.breezepoc.datasource.network.model.NameDto
-import com.example.breezepoc.domain.model.Name
+import com.example.breezepoc.domain.model.PeopleList.Name
 import com.example.breezepoc.domain.model.util.DtoMapper
 
 class NameNetworkMapper constructor() : DtoMapper<NameDto, Name> {

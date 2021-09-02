@@ -1,4 +1,4 @@
-package com.example.breezepoc.domain.model
+package com.example.breezepoc.domain.model.PeopleList
 
 
 data class Name(

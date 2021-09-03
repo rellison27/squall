@@ -7,16 +7,16 @@ import kotlinx.serialization.Serializable
 data class PersonDetailsDto(
 
     @SerialName("name")
-    var name: NameDto?,
+    val name: NameDto?,
 
     @SerialName("profile_picture")
-    var profilePicture: String?,
+    val profilePicture: String?,
 
     @SerialName("email")
-    var email: PersonEmailDto?,
+    val email: PersonEmailDto?,
 
     @SerialName("archived")
-    var archived: Boolean?,
+    val archived: Boolean?,
 
     @SerialName("address")
     val address: AddressDto?,

@@ -7,11 +7,11 @@ import kotlinx.serialization.Serializable
 data class PeoplePhoneDto(
 
     @SerialName("home")
-    var home: String?,
+    val home: String?,
 
     @SerialName("work")
-    var work: String?,
+    val work: String?,
 
     @SerialName("mobile")
-    var mobile: String?,
+    val mobile: String?,
 )

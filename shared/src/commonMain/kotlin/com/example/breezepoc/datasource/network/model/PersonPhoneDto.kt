@@ -7,18 +7,18 @@ import kotlinx.serialization.Serializable
 data class PersonPhoneDto(
 
     @SerialName("home")
-    var home: NumberDto?,
+    val home: NumberDto?,
 
     @SerialName("work")
-    var work: NumberDto?,
+    val work: NumberDto?,
 
     @SerialName("mobile")
-    var mobile: NumberDto?
+    val mobile: NumberDto?
 )
 
 @Serializable
 data class NumberDto(
 
     @SerialName("number")
-    var number: String?
+    val number: String?
 )

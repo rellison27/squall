@@ -7,9 +7,9 @@ import kotlinx.serialization.Serializable
 data class PersonDto(
 
     @SerialName("id")
-    var id: Long?,
+    val id: Long?,
 
     @SerialName("person_details")
-    var personDetails: PersonDetailsDto?
+    val personDetails: PersonDetailsDto?
 
 )

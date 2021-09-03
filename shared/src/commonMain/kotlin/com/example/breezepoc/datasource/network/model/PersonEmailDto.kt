@@ -7,5 +7,5 @@ import kotlinx.serialization.Serializable
 data class PersonEmailDto(
 
     @SerialName("address")
-    var address: String?
+    val address: String?
 )

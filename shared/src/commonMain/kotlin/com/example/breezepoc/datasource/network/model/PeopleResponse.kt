@@ -7,6 +7,6 @@ import kotlinx.serialization.Serializable
 data class PeopleResponse(
 
     @SerialName("data")
-    var data: List<PeopleDto>
+    val data: List<PeopleDto>
 
 )

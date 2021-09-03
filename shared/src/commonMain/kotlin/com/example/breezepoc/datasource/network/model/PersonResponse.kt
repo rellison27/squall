@@ -7,5 +7,5 @@ import kotlinx.serialization.Serializable
 data class PersonResponse(
 
     @SerialName("data")
-    var data: PersonDto
+    val data: PersonDto
 )

@@ -38,7 +38,7 @@ constructor(
                 }
             }
         } catch (e: Exception) {
-            println("failed $e")
+            println("PeopleService failed $e")
         }
 
     }

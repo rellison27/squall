@@ -17,8 +17,8 @@ class PersonDetailsNetworkMapper constructor(
     override fun mapToDomainModel(model: PeopleDetailsDto?): PeopleDetails {
         if (model != null) {
             return PeopleDetails(
-                name = nameMapper.mapToDomainModel(model?.name),
-                phone = phoneMapper.mapToDomainModel(model?.phone),
+                name = nameMapper.mapToDomainModel(model.name),
+                phone = phoneMapper.mapToDomainModel(model.phone),
                 email = model.email,
                 archived = model.archived,
                 profilePicture = model.profilePicture

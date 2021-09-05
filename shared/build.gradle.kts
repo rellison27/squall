@@ -5,6 +5,7 @@ plugins {
     kotlin("native.cocoapods")
     kotlin(KotlinPlugins.serialization) version Kotlin.version
     id("com.android.library")
+    id(Plugins.sqlDelight)
 }
 
 version = "1.0"
@@ -33,6 +34,7 @@ kotlin {
             dependencies {
                 implementation(Ktor.core)
                 implementation(Ktor.clientSerialization)
+                implementation(SQLDelight.runtime)
             }
         }
         val commonTest by getting {
@@ -44,6 +46,7 @@ kotlin {
         val androidMain by getting {
             dependencies{
                 implementation(Ktor.android)
+                implementation(SQLDelight.androidDriver)
             }
         }
         val androidTest by getting {
@@ -55,6 +58,7 @@ kotlin {
         val iosMain by getting {
             dependencies {
                 implementation(Ktor.ios)
+                implementation(SQLDelight.nativeDriver)
             }
         }
         val iosTest by getting
@@ -67,5 +71,12 @@ android {
     defaultConfig {
         minSdkVersion(21)
         targetSdkVersion(30)
+    }
+}
+
+sqldelight {
+    database("PeopleDatabase") {
+        packageName = "com.example.breezepoc.datasource.cache"
+        sourceFolders = listOf("sqldelight")
     }
 }

@@ -1,0 +1,73 @@
+import java.lang.Boolean;
+
+CREATE TABLE  people_Entity(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    fist_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    nick_name TEXT NOT NULL,
+    maiden_name INTEGER NOT NULL,
+    middle_name TEXT NOT NULL,
+    profile_picture TEXT NOT NULL,
+    archived INTEGER AS Boolean NOT NULL,
+    email TEXT
+);
+
+CREATE TABLE  person_Phone(
+    person_id INTEGER NOT NULL,
+    home TEXT,
+    mobile TEXT,
+    work TEXT,
+    FOREIGN KEY (person_id) REFERENCES people_Entity(id) ON DELETE CASCADE
+);
+
+selectAll:
+SELECT *
+FROM people_Entity;
+
+insertPerson:
+INSERT OR REPLACE
+INTO people_Entity (
+    id,
+    fist_name,
+    last_name,
+    nick_name,
+    maiden_name,
+    middle_name,
+    profile_picture,
+    archived,
+    email
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+insertPersonPhone:
+INSERT OR REPLACE
+INTO person_Phone (
+    person_id,
+    home,
+    mobile,
+    work
+) VALUES (?, ?, ?, ?);
+
+-- IF we implement a search later down the road
+-- -- searchPeople:
+-- -- SELECT * FROM peole_Entity
+-- -- INNER JOIN person_Phone ON people_Entity.id = person_Phone.person_id
+-- -- WHERE name LIKE ('%' || :query || '%')
+-- -- OR email LIKE ('%' || :query || '%')
+-- -- OR mobile LIKE ('%' || :query || '%')
+-- -- -- ORDER BY date_updated DESC -- Ordering can cause duplicates in the results because they all have identical timestamps
+-- -- LIMIT :pageSize
+-- -- OFFSET :offset;
+--
+
+getAllPeople:
+SELECT * FROM people_Entity
+INNER JOIN person_Phone ON people_Entity.id = person_Phone.person_id;
+-- -- ORDER BY date_updated DESC -- Ordering can cause duplicates in the results because they all have identical timestamps
+-- LIMIT :pageSize
+-- OFFSET :offset;
+--
+
+getPersonById:
+SELECT * FROM people_Entity
+INNER JOIN person_Phone ON people_Entity.id = person_Phone.person_id
+WHERE id = :id;

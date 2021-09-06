@@ -2,13 +2,13 @@ import java.lang.Boolean;
 
 CREATE TABLE  people_Entity(
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    fist_name TEXT NOT NULL,
-    last_name TEXT NOT NULL,
-    nick_name TEXT NOT NULL,
-    maiden_name INTEGER NOT NULL,
-    middle_name TEXT NOT NULL,
-    profile_picture TEXT NOT NULL,
-    archived INTEGER AS Boolean NOT NULL,
+    first_name TEXT,
+    last_name TEXT,
+    nick_name TEXT,
+    maiden_name TEXT,
+    middle_name TEXT,
+    profile_picture TEXT,
+    archived INTEGER AS Boolean,
     email TEXT
 );
 
@@ -28,7 +28,7 @@ insertPerson:
 INSERT OR REPLACE
 INTO people_Entity (
     id,
-    fist_name,
+    first_name,
     last_name,
     nick_name,
     maiden_name,

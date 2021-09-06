@@ -1,5 +1,6 @@
 package com.example.breezepoc.datasource.network.mappers.person
 
+import com.example.breezepoc.datasource.cache.GetPersonById
 import com.example.breezepoc.datasource.network.model.NumberDto
 import com.example.breezepoc.datasource.network.model.PersonPhoneDto
 import com.example.breezepoc.domain.model.PeopleList.Phone
@@ -31,6 +32,15 @@ class SinglePhoneNetworkMapper constructor(
         }
         return PersonPhoneDto(null, null, null)
     }
-
-
+    // TODO(We may want to change the overall domain structure of this overall if we don't use the api /people/:id)
+    fun mapFromEntity(entity: GetPersonById?): SinglePhone {
+        if(entity != null) {
+            return SinglePhone(
+                home = singleNumberMapper.mapFromEntity(entity, "home"),
+                mobile = singleNumberMapper.mapFromEntity(entity, "mobile"),
+                work = singleNumberMapper.mapFromEntity(entity, "work")
+            )
+        }
+        return SinglePhone(null, null, null)
+    }
 }

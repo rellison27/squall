@@ -1,5 +1,6 @@
 package com.example.breezepoc.datasource.network.mappers.person
 
+import com.example.breezepoc.datasource.cache.GetPersonById
 import com.example.breezepoc.datasource.network.mappers.people.NameNetworkMapper
 import com.example.breezepoc.datasource.network.model.PersonDetailsDto
 import com.example.breezepoc.domain.model.Person.SinglePersonDetails
@@ -39,6 +40,21 @@ class SinglePersonDetailsNetworkMapper constructor(
             )
         }
         return PersonDetailsDto(null, null, null, null, null, null, null)
+    }
+
+    fun mapFromEntity(entity: GetPersonById): SinglePersonDetails{
+        if (entity != null) {
+            return SinglePersonDetails(
+                name = nameMapper.mapFromEntity(entity.first_name, entity.last_name, entity.middle_name, entity.maiden_name, entity.nick_name),
+                address = addressMapper.mapFromEntity(null),
+                phone = phoneMapper.mapFromEntity(entity),
+                profilePicture = entity.profile_picture,
+                birthdate = null,
+                email = emailMapper.mapFromEntity(entity),
+                archived = entity.archived
+            )
+        }
+        return SinglePersonDetails(null, null, null, null, null, null, null)
     }
 
 }

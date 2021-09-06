@@ -1,5 +1,7 @@
 package com.example.breezepoc.datasource.network.mappers.people
 
+import com.example.breezepoc.datasource.cache.GetAllPeople
+import com.example.breezepoc.datasource.cache.People_Entity
 import com.example.breezepoc.datasource.network.model.NameDto
 import com.example.breezepoc.datasource.network.model.PeopleDetailsDto
 import com.example.breezepoc.datasource.network.model.PeoplePhoneDto
@@ -38,5 +40,18 @@ class PersonDetailsNetworkMapper constructor(
             )
         }
         return PeopleDetailsDto(null, null, "", 0, "")
+    }
+
+    fun mapFromEntity(entity: GetAllPeople): PeopleDetails {
+        if (entity != null) {
+            return PeopleDetails(
+                name = nameMapper.mapFromEntity(entity.first_name, entity.last_name, entity.middle_name, entity.maiden_name, entity.nick_name),
+                phone = phoneMapper.mapFromEntity(entity.mobile, entity.home, entity.work),
+                email = entity.email,
+                archived = if (entity.archived == false) 0 else  1,
+                profilePicture = entity.profile_picture
+            )
+        }
+        return PeopleDetails(null, null, "", 0, "")
     }
 }

@@ -1,5 +1,6 @@
 package com.example.breezepoc.datasource.network.cache
 
+import com.example.breezepoc.domain.model.PeopleList.Person
 import com.example.breezepoc.domain.model.Person.SinglePerson
 
 interface PeopleCache {
@@ -13,7 +14,7 @@ interface PeopleCache {
 
     // may take page param in the future for ininite load but will not for now
     // because prod doesn't have many people
-    fun getAll(): List<SinglePerson>
+    fun getAll(): List<Person>
 
     @Throws(NullPointerException::class)
     fun get(personId: Int): SinglePerson?

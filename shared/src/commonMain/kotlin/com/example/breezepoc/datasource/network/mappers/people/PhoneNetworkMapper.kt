@@ -27,4 +27,12 @@ class PhoneNetworkMapper constructor() : DtoMapper<PeoplePhoneDto, Phone> {
         }
         return PeoplePhoneDto("", "", "")
     }
+
+    fun mapFromEntity(mobile:String?, home:String?, work:String?): Phone {
+        return Phone(
+            home = home,
+            work = work,
+            mobile = mobile
+        )
+    }
 }

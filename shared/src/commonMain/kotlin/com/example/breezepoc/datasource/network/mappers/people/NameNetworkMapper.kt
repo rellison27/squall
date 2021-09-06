@@ -1,5 +1,6 @@
 package com.example.breezepoc.datasource.network.mappers.people
 
+import com.example.breezepoc.datasource.cache.People_Entity
 import com.example.breezepoc.datasource.network.model.NameDto
 import com.example.breezepoc.domain.model.PeopleList.Name
 import com.example.breezepoc.domain.model.util.DtoMapper
@@ -30,5 +31,15 @@ class NameNetworkMapper constructor() : DtoMapper<NameDto, Name> {
             )
         }
         return NameDto(null, null, null, null, null)
+    }
+
+    fun mapFromEntity(first: String?, last: String?, middle: String?, maiden: String?, nick: String?): Name {
+        return Name(
+            first = first,
+            last = last,
+            middle = middle,
+            maiden = maiden,
+            nick = nick
+        )
     }
 }

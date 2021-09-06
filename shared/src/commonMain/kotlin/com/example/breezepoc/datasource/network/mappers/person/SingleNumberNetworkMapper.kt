@@ -1,5 +1,7 @@
 package com.example.breezepoc.datasource.network.mappers.person
 
+import com.example.breezepoc.datasource.cache.GetPersonById
+import com.example.breezepoc.datasource.cache.People_Entity
 import com.example.breezepoc.datasource.network.model.NumberDto
 import com.example.breezepoc.datasource.network.model.PersonPhoneDto
 import com.example.breezepoc.domain.model.Person.PhoneNumber
@@ -24,5 +26,19 @@ class SingleNumberNetworkMapper constructor(): DtoMapper<NumberDto, PhoneNumber>
         return NumberDto("")
     }
 
-
+// TODO(May need to re-evaluate this after making a decision in the SinglePhoneNetworkMapper)
+    fun mapFromEntity(entity: GetPersonById?, type: String): PhoneNumber {
+        var phoneNumber: String? = null
+        when(type){
+            "home" -> phoneNumber = entity?.home
+            "mobile" -> phoneNumber = entity?.mobile
+            "work" -> phoneNumber = entity?.work
+        }
+        if (entity != null) {
+            return PhoneNumber(
+                number = phoneNumber
+            )
+        }
+        return PhoneNumber("")
+    }
 }

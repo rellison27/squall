@@ -1,5 +1,7 @@
 package com.example.breezepoc.datasource.network.mappers.person
 
+import com.example.breezepoc.datasource.cache.GetPersonById
+import com.example.breezepoc.datasource.cache.People_Entity
 import com.example.breezepoc.datasource.network.model.AddressDto
 import com.example.breezepoc.domain.model.Person.Address
 import com.example.breezepoc.domain.model.util.DtoMapper
@@ -29,4 +31,16 @@ class AddressNetworkMapper constructor(): DtoMapper<AddressDto, Address> {
         return AddressDto(null, null, null, null)
     }
 
+    // TODO(We may want to eventually get the address from the getPeople in PeopleServiceImpl)
+     fun mapFromEntity(entity: GetPersonById?): Address {
+//        if (entity != null) {
+//            return Address(
+//                StreetAddress = entity.streetAddress,
+//                city = entity.city,
+//                state = entity.state,
+//                zip = entity.zip
+//            )
+//        }
+        return Address(null, null, null, null)
+    }
 }

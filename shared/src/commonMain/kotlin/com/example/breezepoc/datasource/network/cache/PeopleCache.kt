@@ -8,7 +8,7 @@ interface PeopleCache {
 
     fun insert(person: Person)
 
-    fun insert(person: List<Person>)
+    fun insert(people: List<Person>)
 
     fun insertPhone(person: Person)
 

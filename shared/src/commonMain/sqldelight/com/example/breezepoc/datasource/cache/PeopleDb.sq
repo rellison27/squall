@@ -9,15 +9,16 @@ CREATE TABLE  people_Entity(
     middle_name TEXT,
     profile_picture TEXT,
     archived INTEGER AS Boolean,
-    email TEXT
+    email TEXT,
+    FOREIGN KEY (id) REFERENCES person_Phone(person_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE  person_Phone(
-    person_id INTEGER NOT NULL,
+    person_id INTEGER NOT NULL PRIMARY KEY,
     home TEXT,
     mobile TEXT,
     work TEXT,
-    FOREIGN KEY (person_id) REFERENCES people_Entity(id) ON DELETE CASCADE
+    FOREIGN KEY (person_id) REFERENCES people_Entity(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 selectAll:

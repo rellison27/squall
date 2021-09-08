@@ -1,6 +1,7 @@
 package com.example.breezepoc.android.di
 
 import com.example.breezepoc.datasource.network.PeopleService
+import com.example.breezepoc.datasource.network.cache.PeopleCache
 import com.example.breezepoc.interactors.people_list.PopulatePeopleList
 import com.example.breezepoc.interactors.person_detail.PopulatePersonDetail
 import dagger.Module
@@ -16,16 +17,17 @@ object InteractorsModule {
     @Singleton
     @Provides
     fun providePopulatePeopleList(
-        peopleService: PeopleService
+        peopleService: PeopleService,
+        peopleCache: PeopleCache
     ): PopulatePeopleList {
-        return PopulatePeopleList(peopleService = peopleService)
+        return PopulatePeopleList(peopleService = peopleService, peopleCache = peopleCache)
     }
 
     @Singleton
     @Provides
     fun providePopulatePersonDetail(
-        peopleService: PeopleService
+        peopleCache: PeopleCache
     ): PopulatePersonDetail {
-        return PopulatePersonDetail(peopleService = peopleService)
+        return PopulatePersonDetail(peopleCache = peopleCache)
     }
 }

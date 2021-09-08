@@ -20,29 +20,29 @@ class PeopleCacheImpl(
     private var queries: PeopleDbQueries = peopleDatabase.peopleDbQueries
 
     // for People
-    val nameNetworkMapper: NameNetworkMapper = NameNetworkMapper()
-    val phoneNetworkMapper: PhoneNetworkMapper = PhoneNetworkMapper()
-    val personDetailsNetworkMapper: PersonDetailsNetworkMapper = PersonDetailsNetworkMapper(
+    private val nameNetworkMapper: NameNetworkMapper = NameNetworkMapper()
+    private val phoneNetworkMapper: PhoneNetworkMapper = PhoneNetworkMapper()
+    private val personDetailsNetworkMapper: PersonDetailsNetworkMapper = PersonDetailsNetworkMapper(
         nameNetworkMapper, phoneNetworkMapper
     )
-    val peopleNetworkMapper: PeopleNetworkMapper = PeopleNetworkMapper(
+    private val peopleNetworkMapper: PeopleNetworkMapper = PeopleNetworkMapper(
         personDetailsNetworkMapper
     )
 
     // for Single Person call
-    val singleNumberNetworkMapper: SingleNumberNetworkMapper = SingleNumberNetworkMapper()
-    val emailNetworkMapper: SingleEmailNetworkMapper = SingleEmailNetworkMapper()
-    val singlePhoneNetworkMapper: SinglePhoneNetworkMapper = SinglePhoneNetworkMapper(singleNumberNetworkMapper)
-    val addressNetworkMapper: AddressNetworkMapper = AddressNetworkMapper()
-    val singlePersonDetailsNetworkMapper: SinglePersonDetailsNetworkMapper = SinglePersonDetailsNetworkMapper(
+    private val singleNumberNetworkMapper: SingleNumberNetworkMapper = SingleNumberNetworkMapper()
+    private val emailNetworkMapper: SingleEmailNetworkMapper = SingleEmailNetworkMapper()
+    private val singlePhoneNetworkMapper: SinglePhoneNetworkMapper = SinglePhoneNetworkMapper(singleNumberNetworkMapper)
+    private val addressNetworkMapper: AddressNetworkMapper = AddressNetworkMapper()
+    private val singlePersonDetailsNetworkMapper: SinglePersonDetailsNetworkMapper = SinglePersonDetailsNetworkMapper(
         nameNetworkMapper,
         addressNetworkMapper,
         singlePhoneNetworkMapper,
         emailNetworkMapper
     )
-    val personNetworkMapper: PersonNetworkMapper = PersonNetworkMapper(singlePersonDetailsNetworkMapper)
+    private val personNetworkMapper: PersonNetworkMapper = PersonNetworkMapper(singlePersonDetailsNetworkMapper)
 
-    override fun insert(person: SinglePerson) {
+    override fun insert(person: Person) {
         queries.insertPerson(
             id = person.id,
             first_name = person.personDetails?.name?.first,
@@ -51,28 +51,36 @@ class PeopleCacheImpl(
             maiden_name = person.personDetails?.name?.maiden,
             middle_name = person.personDetails?.name?.middle,
             profile_picture = person.personDetails?.profilePicture,
-            archived = person.personDetails?.archived,
-            email = person.personDetails?.email?.address
+            archived = if(person.personDetails?.archived == 0) false else true,
+            email = person.personDetails?.email
         )
     }
 
-    override fun insert(people: List<SinglePerson>) {
+    override fun insert(people: List<Person>) {
         for (person in people){
             insert(person)
+            insertPhone(person)
         }
+    }
+
+    override fun insertPhone(person: Person) {
+        queries.insertPersonPhone(
+            person_id = person.id,
+            home = person.personDetails?.phone?.home,
+            mobile = person.personDetails?.phone?.mobile,
+            work = person.personDetails?.phone?.work
+        )
     }
 
     override fun getAll(): List<Person> {
         val people = queries.getAllPeople().executeAsList()
-        val mapped = peopleNetworkMapper.mapFromEntityList(people)
-        return mapped
+        return peopleNetworkMapper.mapFromEntityList(people)
     }
 
     override fun get(personId: Int): SinglePerson? {
         return try {
             val person = queries.getPersonById(id = personId.toLong()).executeAsOne()
-            val mapped = personNetworkMapper.mapFromEntity(person)
-            return mapped
+            return personNetworkMapper.mapFromEntity(person)
         }catch (e: NullPointerException){
             null
         }

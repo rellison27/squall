@@ -18,7 +18,8 @@ class PeopleNetworkMapper constructor(
                 personDetails = personDetailsNetworkMapper.mapToDomainModel(model.personDetails)
             )
         }
-        return Person(null, null)
+        // TODO(Probably don't need wrapped if)
+        return Person(0, null)
     }
 
     override fun mapFromDomainModel(domainModel: Person?): PeopleDto {
@@ -28,7 +29,8 @@ class PeopleNetworkMapper constructor(
                 personDetails = personDetailsNetworkMapper.mapFromDomainModel(domainModel.personDetails)
             )
         }
-        return PeopleDto(null, null)
+        // TODO(Probably don't need wrapped if)
+        return PeopleDto(0, null)
     }
 
     fun mapToDomainList(initial: List<PeopleDto>): List<Person> {
@@ -42,7 +44,8 @@ class PeopleNetworkMapper constructor(
                 personDetails = personDetailsNetworkMapper.mapFromEntity(entity)
             )
         }
-        return Person(null, null)
+        // TODO(Probably don't need wrapped if)
+        return Person(0, null)
     }
 
     fun mapFromEntityList(initial: List<GetAllPeople>): List<Person> {

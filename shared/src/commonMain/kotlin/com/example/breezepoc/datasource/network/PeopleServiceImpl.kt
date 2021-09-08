@@ -61,7 +61,7 @@ singlePhoneNetworkMapper,
     }
 
     companion object {
-        const val BEARER = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkuYnJlZXplY2htcy5jb21cL2FwaVwvdjJcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjMwNjc3MDY3LCJleHAiOjE2MzA2ODA2NjcsIm5iZiI6MTYzMDY3NzA2NywianRpIjoiT3lIR2FnRXA3UnVXVXZtdyIsInN1YiI6Nzc1MTc2LCJwcnYiOiI0YWMwNWMwZjhhYzA4ZjM2NGNiNGQwM2ZiOGUxZjYzMWZlYzMyMmU4In0.eQvNTkYiDUoT2KaBGR35XJ4Q7yQpiJCe79dN77DjaJc"
+        const val BEARER = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkuYnJlZXplY2htcy5jb21cL2FwaVwvdjJcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjMxMDY4OTYxLCJleHAiOjE2MzEwNzI1NjEsIm5iZiI6MTYzMTA2ODk2MSwianRpIjoiMnR3VEpNOGxjNW9PRFBJRCIsInN1YiI6Nzc1MTc2LCJwcnYiOiI0YWMwNWMwZjhhYzA4ZjM2NGNiNGQwM2ZiOGUxZjYzMWZlYzMyMmU4In0.zOwXYu1jDT2H2nUhDwQ7fkxp66SZ5Uv36n3RSU4_U8w"
         const val BASE_URL = "https://api.breezechms.com/api/v2/people"
         const val PEOPLE_PARAMS = "?sort=[formalName:asc]&filter[is_archived:eq:boolean]=false&filter[email:contains:text]=@,0,0&filter[phone:contains:text]=@:Mobile:false:false"
     }

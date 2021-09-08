@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 data class PeopleDto(
 
     @SerialName("id")
-    val id: Long?,
+    val id: Long,
 
     @SerialName("person_details")
     val personDetails: PeopleDetailsDto?

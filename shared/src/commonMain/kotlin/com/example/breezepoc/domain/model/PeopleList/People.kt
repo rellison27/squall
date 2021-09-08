@@ -24,7 +24,7 @@ data class PeopleDetails (
     val profilePicture: String?
 )
 data class Person(
-    val id: Long?,
+    val id: Long,
     val personDetails: PeopleDetails?
 )
 

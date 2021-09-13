@@ -1,8 +1,6 @@
 package com.example.breezepoc.datasource.network.mappers.people
 
 import com.example.breezepoc.datasource.cache.GetAllPeople
-import com.example.breezepoc.datasource.cache.GetPersonById
-import com.example.breezepoc.datasource.cache.People_Entity
 import com.example.breezepoc.datasource.network.model.PeopleDto
 import com.example.breezepoc.domain.model.PeopleList.Person
 import com.example.breezepoc.domain.model.util.DtoMapper
@@ -38,14 +36,10 @@ class PeopleNetworkMapper constructor(
     }
 
     fun mapFromEntity(entity: GetAllPeople): Person {
-        if (entity != null) {
             return Person(
                 id = entity.id,
                 personDetails = personDetailsNetworkMapper.mapFromEntity(entity)
             )
-        }
-        // TODO(Probably don't need wrapped if)
-        return Person(0, null)
     }
 
     fun mapFromEntityList(initial: List<GetAllPeople>): List<Person> {

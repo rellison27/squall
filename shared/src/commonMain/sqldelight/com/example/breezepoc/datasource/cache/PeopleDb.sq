@@ -55,7 +55,6 @@ INTO person_Phone (
 -- -- WHERE name LIKE ('%' || :query || '%')
 -- -- OR email LIKE ('%' || :query || '%')
 -- -- OR mobile LIKE ('%' || :query || '%')
--- -- -- ORDER BY date_updated DESC -- Ordering can cause duplicates in the results because they all have identical timestamps
 -- -- LIMIT :pageSize
 -- -- OFFSET :offset;
 --
@@ -63,7 +62,6 @@ INTO person_Phone (
 getAllPeople:
 SELECT * FROM people_Entity
 INNER JOIN person_Phone ON people_Entity.id = person_Phone.person_id;
--- -- ORDER BY date_updated DESC -- Ordering can cause duplicates in the results because they all have identical timestamps
 -- LIMIT :pageSize
 -- OFFSET :offset;
 --

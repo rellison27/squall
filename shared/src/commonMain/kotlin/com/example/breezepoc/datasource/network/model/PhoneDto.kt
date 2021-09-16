@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class PersonPhoneDto(
+data class PhoneDto(
 
     @SerialName("home")
     val home: NumberDto?,
@@ -20,5 +20,8 @@ data class PersonPhoneDto(
 data class NumberDto(
 
     @SerialName("number")
-    val number: String?
+    val number: String?,
+
+    @SerialName("private")
+    val private: Boolean?
 )

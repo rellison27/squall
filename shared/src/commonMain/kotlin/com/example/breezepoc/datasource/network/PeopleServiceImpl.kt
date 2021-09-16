@@ -1,9 +1,6 @@
 package com.example.breezepoc.datasource.network
 
-import com.example.breezepoc.datasource.network.mappers.people.NameNetworkMapper
-import com.example.breezepoc.datasource.network.mappers.people.PeopleNetworkMapper
-import com.example.breezepoc.datasource.network.mappers.people.PersonDetailsNetworkMapper
-import com.example.breezepoc.datasource.network.mappers.people.PhoneNetworkMapper
+import com.example.breezepoc.datasource.network.mappers.people.*
 import com.example.breezepoc.datasource.network.mappers.person.*
 import com.example.breezepoc.datasource.network.model.PeopleResponse
 import com.example.breezepoc.datasource.network.model.PersonResponse
@@ -17,32 +14,34 @@ class PeopleServiceImpl(
     // great  to have for testing even though I'm hardcoding the bseurl below
     private val baseUrl: String,
 ): PeopleService {
+    val numberNetworkMapper: NumberNetworkMapper = NumberNetworkMapper()
+    val phoneNetworkMapper: PhoneNetworkMapper = PhoneNetworkMapper(numberNetworkMapper)
+    val addressNetworkMapper: AddressNetworkMapper = AddressNetworkMapper()
     // for People
     val nameNetworkMapper: NameNetworkMapper = NameNetworkMapper()
-    val phoneNetworkMapper: PhoneNetworkMapper = PhoneNetworkMapper()
-    val personDetailsNetworkMapper: PersonDetailsNetworkMapper = PersonDetailsNetworkMapper(
-        nameNetworkMapper, phoneNetworkMapper
-    )
+    val emailNetworkMapper: EmailNetworkMapper = EmailNetworkMapper()
     val peopleNetworkMapper: PeopleNetworkMapper = PeopleNetworkMapper(
-        personDetailsNetworkMapper
+        nameNetworkMapper,
+        phoneNetworkMapper,
+        addressNetworkMapper,
+        emailNetworkMapper
     )
 
     // for Single Person call
-    val singleNumberNetworkMapper: SingleNumberNetworkMapper = SingleNumberNetworkMapper()
-    val emailNetworkMapper: SingleEmailNetworkMapper = SingleEmailNetworkMapper()
-    val singlePhoneNetworkMapper: SinglePhoneNetworkMapper = SinglePhoneNetworkMapper(singleNumberNetworkMapper)
-    val addressNetworkMapper: AddressNetworkMapper = AddressNetworkMapper()
+
+    val singleEmailNetworkMapper: SingleEmailNetworkMapper = SingleEmailNetworkMapper()
+
     val singlePersonDetailsNetworkMapper: SinglePersonDetailsNetworkMapper = SinglePersonDetailsNetworkMapper(
         nameNetworkMapper,
         addressNetworkMapper,
-singlePhoneNetworkMapper,
-        emailNetworkMapper
+        phoneNetworkMapper,
+        singleEmailNetworkMapper
         )
     val personNetworkMapper: PersonNetworkMapper = PersonNetworkMapper(singlePersonDetailsNetworkMapper)
 
     override suspend fun getPeople(): List<Person> {
         val people = httpClient.get<PeopleResponse> {
-            url("$BASE_URL$PEOPLE_PARAMS")
+            url("$BASE_URL/$PEOPLE_PARAMS")
             header("Authorization", BEARER,)
         }.data
         val mapped = peopleNetworkMapper.mapToDomainList(people)
@@ -61,9 +60,9 @@ singlePhoneNetworkMapper,
     }
 
     companion object {
-        const val BEARER = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkuYnJlZXplY2htcy5jb21cL2FwaVwvdjJcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjMxNTU1NzUxLCJleHAiOjE2MzE1NTkzNTEsIm5iZiI6MTYzMTU1NTc1MSwianRpIjoiQk50dUtlMlR3YnliUmdGYiIsInN1YiI6Nzc1MTc2LCJwcnYiOiI0YWMwNWMwZjhhYzA4ZjM2NGNiNGQwM2ZiOGUxZjYzMWZlYzMyMmU4In0.HdYoQgBxUkheTsvhzJiYppJcEsbZycK6Ev3-dRAeqRE"
+        const val BEARER = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkuYnJlZXplY2htcy5jb21cL2FwaVwvdjJcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjMxNzQ5MTkxLCJleHAiOjE2MzE3NTI3OTEsIm5iZiI6MTYzMTc0OTE5MSwianRpIjoibG9IQWRMRENmRm04NHprVSIsInN1YiI6Nzc1MTc2LCJwcnYiOiI0YWMwNWMwZjhhYzA4ZjM2NGNiNGQwM2ZiOGUxZjYzMWZlYzMyMmU4In0.p3w3ATAO35uNOpxLwyPG0Wc6-giW8RKkX9DlR1iMbgc"
         const val BASE_URL = "https://api.breezechms.com/api/v2/people"
-        const val PEOPLE_PARAMS = "?sort=[formalName:asc]&filter[is_archived:eq:boolean]=false&filter[email:contains:text]=@,0,0&filter[phone:contains:text]=@:Mobile:false:false"
+        const val PEOPLE_PARAMS = "replacement?sort=[last_name:asc,first_name:asc]&filter[archived:exists]=false"
     }
 
 }

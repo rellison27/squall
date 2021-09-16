@@ -1,26 +1,12 @@
 package com.example.breezepoc.domain.model.Person
 
+import com.example.breezepoc.domain.model.PeopleList.Address
 import com.example.breezepoc.domain.model.PeopleList.Name
+import com.example.breezepoc.domain.model.PeopleList.Phone
 
 data class Email (
-    val address: String?
-)
+    val address: String?,
 
-data class PhoneNumber(
-    val number: String?
-)
-
-data class SinglePhone(
-    val home: PhoneNumber?,
-    val work: PhoneNumber?,
-    val mobile: PhoneNumber?
-)
-
-data class Address(
-    val StreetAddress: String?,
-    val city: String?,
-    val state: String?,
-    val zip: String?
 )
 
 data class SinglePersonDetails(
@@ -28,7 +14,7 @@ data class SinglePersonDetails(
     val address: Address?,
     val profilePicture: String?,
     val birthdate: String?,
-    val phone: SinglePhone?,
+    val phone: Phone?,
     val email: Email?,
     val archived: Boolean?
 )

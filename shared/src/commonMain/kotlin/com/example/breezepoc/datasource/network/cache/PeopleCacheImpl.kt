@@ -2,10 +2,7 @@ package com.example.breezepoc.datasource.network.cache
 
 import com.example.breezepoc.datasource.cache.PeopleDatabase
 import com.example.breezepoc.datasource.cache.PeopleDbQueries
-import com.example.breezepoc.datasource.network.mappers.people.NameNetworkMapper
-import com.example.breezepoc.datasource.network.mappers.people.PeopleNetworkMapper
-import com.example.breezepoc.datasource.network.mappers.people.PersonDetailsNetworkMapper
-import com.example.breezepoc.datasource.network.mappers.people.PhoneNetworkMapper
+import com.example.breezepoc.datasource.network.mappers.people.*
 import com.example.breezepoc.datasource.network.mappers.person.*
 import com.example.breezepoc.domain.model.PeopleList.Person
 import com.example.breezepoc.domain.model.Person.SinglePerson
@@ -19,40 +16,42 @@ class PeopleCacheImpl(
     // sqldelight generates the classes from that file
     private var queries: PeopleDbQueries = peopleDatabase.peopleDbQueries
 
+    private val numberNetworkMapper: NumberNetworkMapper = NumberNetworkMapper()
+    private val phoneNetworkMapper: PhoneNetworkMapper = PhoneNetworkMapper(numberNetworkMapper)
+    private val addressNetworkMapper: AddressNetworkMapper = AddressNetworkMapper()
     // for People
     private val nameNetworkMapper: NameNetworkMapper = NameNetworkMapper()
-    private val phoneNetworkMapper: PhoneNetworkMapper = PhoneNetworkMapper()
-    private val personDetailsNetworkMapper: PersonDetailsNetworkMapper = PersonDetailsNetworkMapper(
-        nameNetworkMapper, phoneNetworkMapper
-    )
+    private val emailNetworkMapper: EmailNetworkMapper = EmailNetworkMapper()
     private val peopleNetworkMapper: PeopleNetworkMapper = PeopleNetworkMapper(
-        personDetailsNetworkMapper
+        nameNetworkMapper,
+        phoneNetworkMapper,
+        addressNetworkMapper,
+        emailNetworkMapper
     )
 
     // for Single Person call
-    private val singleNumberNetworkMapper: SingleNumberNetworkMapper = SingleNumberNetworkMapper()
-    private val emailNetworkMapper: SingleEmailNetworkMapper = SingleEmailNetworkMapper()
-    private val singlePhoneNetworkMapper: SinglePhoneNetworkMapper = SinglePhoneNetworkMapper(singleNumberNetworkMapper)
-    private val addressNetworkMapper: AddressNetworkMapper = AddressNetworkMapper()
+    private val singleEmailNetworkMapper: SingleEmailNetworkMapper = SingleEmailNetworkMapper()
+
     private val singlePersonDetailsNetworkMapper: SinglePersonDetailsNetworkMapper = SinglePersonDetailsNetworkMapper(
         nameNetworkMapper,
         addressNetworkMapper,
-        singlePhoneNetworkMapper,
-        emailNetworkMapper
+        phoneNetworkMapper,
+        singleEmailNetworkMapper
     )
     private val personNetworkMapper: PersonNetworkMapper = PersonNetworkMapper(singlePersonDetailsNetworkMapper)
 
     override fun insert(person: Person) {
         queries.insertPerson(
             id = person.id,
-            first_name = person.personDetails?.name?.first,
-            last_name = person.personDetails?.name?.last,
-            nick_name = person.personDetails?.name?.nick,
-            maiden_name = person.personDetails?.name?.maiden,
-            middle_name = person.personDetails?.name?.middle,
-            profile_picture = person.personDetails?.profilePicture,
-            archived = if(person.personDetails?.archived == 0) false else true,
-            email = person.personDetails?.email
+            first_name = person.name?.first,
+            last_name = person.name?.last,
+            nick_name = person.name?.nick,
+            maiden_name = person.name?.maiden,
+            middle_name = person.name?.middle,
+            profile_picture = person.profilePicture,
+            archived = person.archived,
+            birthdate = person.birthdate,
+            email = person.email?.address
         )
     }
 
@@ -60,15 +59,33 @@ class PeopleCacheImpl(
         for (person in people){
             insert(person)
             insertPhone(person)
+            insertAddress(person)
         }
     }
 
+    // TODO(Add home/mobile/work_is_private columns to db table)
     override fun insertPhone(person: Person) {
         queries.insertPersonPhone(
             person_id = person.id,
-            home = person.personDetails?.phone?.home,
-            mobile = person.personDetails?.phone?.mobile,
-            work = person.personDetails?.phone?.work
+            home = person.phone?.home?.number,
+            mobile = person.phone?.mobile?.number,
+            work = person.phone?.work?.number,
+            home_is_private = person.phone?.home?.private,
+            mobile_is_private = person.phone?.mobile?.private,
+            work_is_private = person.phone?.work?.private
+        )
+    }
+
+    override fun insertAddress(person: Person) {
+        queries.insertPersonAddress(
+            person_id = person.id,
+            street = person.address?.street,
+            city = person.address?.city,
+            state = person.address?.state,
+            zip = person.address?.zip,
+            longitude = person.address?.longitude,
+            latitude = person.address?.latitude,
+            private_ = person.address?.private
         )
     }
 

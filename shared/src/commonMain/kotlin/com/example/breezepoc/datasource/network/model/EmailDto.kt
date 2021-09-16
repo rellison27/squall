@@ -4,8 +4,14 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class PersonEmailDto(
+data class EmailDto(
 
     @SerialName("address")
-    val address: String?
+    val address: String?,
+
+    @SerialName("private")
+    val private: Boolean?,
+
+    @SerialName("exclude")
+    val exclude: Boolean?
 )

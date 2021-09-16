@@ -9,8 +9,10 @@ CREATE TABLE  people_Entity(
     middle_name TEXT,
     profile_picture TEXT,
     archived INTEGER AS Boolean,
+    birthdate INTEGER,
     email TEXT,
-    FOREIGN KEY (id) REFERENCES person_Phone(person_id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (id) REFERENCES person_Phone(person_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (id) REFERENCES person_Address(person_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE  person_Phone(
@@ -18,6 +20,21 @@ CREATE TABLE  person_Phone(
     home TEXT,
     mobile TEXT,
     work TEXT,
+    home_is_private INTEGER AS Boolean,
+    mobile_is_private INTEGER AS Boolean,
+    work_is_private INTEGER AS Boolean,
+    FOREIGN KEY (person_id) REFERENCES people_Entity(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE  person_Address(
+    person_id INTEGER NOT NULL PRIMARY KEY,
+    street TEXT,
+    city TEXT,
+    state TEXT,
+    zip TEXT,
+    longitude TEXT,
+    latitude TEXT,
+    private INTEGER AS Boolean,
     FOREIGN KEY (person_id) REFERENCES people_Entity(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -36,8 +53,9 @@ INTO people_Entity (
     middle_name,
     profile_picture,
     archived,
+    birthdate,
     email
-) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 
 insertPersonPhone:
 INSERT OR REPLACE
@@ -45,8 +63,24 @@ INTO person_Phone (
     person_id,
     home,
     mobile,
-    work
-) VALUES (?, ?, ?, ?);
+    work,
+    home_is_private,
+    mobile_is_private,
+    work_is_private
+) VALUES (?, ?, ?, ?,?,?,?);
+
+insertPersonAddress:
+INSERT OR REPLACE
+INTO person_Address (
+    person_id,
+    street,
+    city,
+    state,
+    zip,
+    longitude,
+    latitude,
+    private
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?);
 
 -- IF we implement a search later down the road
 -- -- searchPeople:
@@ -61,7 +95,8 @@ INTO person_Phone (
 
 getAllPeople:
 SELECT * FROM people_Entity
-INNER JOIN person_Phone ON people_Entity.id = person_Phone.person_id;
+INNER JOIN person_Phone ON people_Entity.id = person_Phone.person_id
+INNER JOIN person_Address ON people_Entity.id = person_Address.person_id;
 -- LIMIT :pageSize
 -- OFFSET :offset;
 --
@@ -69,4 +104,5 @@ INNER JOIN person_Phone ON people_Entity.id = person_Phone.person_id;
 getPersonById:
 SELECT * FROM people_Entity
 INNER JOIN person_Phone ON people_Entity.id = person_Phone.person_id
+INNER JOIN person_Address ON people_Entity.id = person_Address.person_id
 WHERE id = :id;

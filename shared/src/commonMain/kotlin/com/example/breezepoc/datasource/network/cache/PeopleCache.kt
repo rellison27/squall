@@ -12,6 +12,8 @@ interface PeopleCache {
 
     fun insertPhone(person: Person)
 
+    fun insertAddress(person: Person)
+
     // may implement a search feature
     // fun search(query: String, page: Int)
 

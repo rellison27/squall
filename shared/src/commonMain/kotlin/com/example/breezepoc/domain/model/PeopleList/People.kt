@@ -1,5 +1,20 @@
 package com.example.breezepoc.domain.model.PeopleList
 
+data class Email (
+    val address: String?,
+    val private: Boolean?,
+    val exclude: Boolean?
+)
+
+data class Address (
+    val street: String?,
+    val city: String?,
+    val state: String?,
+    val zip: String?,
+    val longitude: String?,
+    val latitude: String?,
+    val private: Boolean?
+)
 
 data class Name(
     val first: String?,
@@ -9,23 +24,27 @@ data class Name(
     val nick: String?,
 )
 
+data class PhoneNumber(
+    val number: String?,
+    val private: Boolean?
+)
+
 data class Phone(
-    val home: String?,
-    val work: String?,
-    val mobile: String?,
+    val home: PhoneNumber?,
+    val work: PhoneNumber?,
+    val mobile: PhoneNumber?,
 
 )
 
-data class PeopleDetails (
-    val name: Name?,
-    val phone: Phone?,
-    val email: String?,
-    val archived: Int,
-    val profilePicture: String?
-)
 data class Person(
     val id: Long,
-    val personDetails: PeopleDetails?
+    val archived: Boolean?,
+    val birthdate: Long?,
+    val address: Address?,
+    val email: Email?,
+    val phone: Phone?,
+    val name: Name?,
+    val profilePicture: String?,
 )
 
 data class People(

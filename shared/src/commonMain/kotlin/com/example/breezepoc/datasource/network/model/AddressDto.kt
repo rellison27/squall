@@ -6,8 +6,8 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class AddressDto(
 
-    @SerialName("street_address")
-    val streetAddress: String?,
+    @SerialName("street")
+    val street: String?,
 
     @SerialName("city")
     val city: String?,
@@ -17,5 +17,14 @@ data class AddressDto(
 
     @SerialName("zip")
     val zip: String?,
+
+    @SerialName("longitude")
+    val longitude: String?,
+
+    @SerialName("latitude")
+    val latitude: String?,
+
+    @SerialName("private")
+    val private: Boolean?,
 
 )

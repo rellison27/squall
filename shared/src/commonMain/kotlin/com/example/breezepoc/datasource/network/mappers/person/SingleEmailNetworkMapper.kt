@@ -1,13 +1,12 @@
 package com.example.breezepoc.datasource.network.mappers.person
 
 import com.example.breezepoc.datasource.cache.GetPersonById
-import com.example.breezepoc.datasource.cache.People_Entity
-import com.example.breezepoc.datasource.network.model.PersonEmailDto
+import com.example.breezepoc.datasource.network.model.EmailDto
 import com.example.breezepoc.domain.model.Person.Email
 import com.example.breezepoc.domain.model.util.DtoMapper
 
-class SingleEmailNetworkMapper constructor() : DtoMapper<PersonEmailDto, Email> {
-    override fun mapToDomainModel(model: PersonEmailDto?): Email {
+class SingleEmailNetworkMapper constructor() : DtoMapper<EmailDto, Email> {
+    override fun mapToDomainModel(model: EmailDto?): Email {
         if(model != null) {
             return Email(
                 address = model.address
@@ -16,21 +15,21 @@ class SingleEmailNetworkMapper constructor() : DtoMapper<PersonEmailDto, Email> 
         return Email(null)
     }
 
-    override fun mapFromDomainModel(domainModel: Email?): PersonEmailDto {
+    override fun mapFromDomainModel(domainModel: Email?): EmailDto {
         if(domainModel != null) {
-            return PersonEmailDto(
-                address = domainModel.address
+            return EmailDto(
+                address = domainModel.address,
+                private = null,
+                exclude = null
             )
         }
-        return PersonEmailDto(null)
+        return EmailDto(null, null, null)
     }
 
+    // TODO(I'm pretty sure EmailNEtworkMapper is exactly the same besides the types)
     fun mapFromEntity(entity: GetPersonById): Email {
-        if(entity != null) {
             return Email(
                 address = entity.email
             )
-        }
-        return Email(null)
     }
 }

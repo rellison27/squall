@@ -9,7 +9,7 @@ import com.example.breezepoc.domain.model.util.DtoMapper
 class SinglePersonDetailsNetworkMapper constructor(
     private val nameMapper: NameNetworkMapper,
     private val addressMapper: AddressNetworkMapper,
-    private val phoneMapper: SinglePhoneNetworkMapper,
+    private val phoneMapper: PhoneNetworkMapper,
     private val emailMapper: SingleEmailNetworkMapper
 ): DtoMapper<PersonDetailsDto, SinglePersonDetails> {
     override fun mapToDomainModel(model: PersonDetailsDto?): SinglePersonDetails {
@@ -43,18 +43,15 @@ class SinglePersonDetailsNetworkMapper constructor(
     }
 
     fun mapFromEntity(entity: GetPersonById): SinglePersonDetails{
-        if (entity != null) {
             return SinglePersonDetails(
                 name = nameMapper.mapFromEntity(entity.first_name, entity.last_name, entity.middle_name, entity.maiden_name, entity.nick_name),
-                address = addressMapper.mapFromEntity(null),
+                address = addressMapper.mapFromEntity(entity),
                 phone = phoneMapper.mapFromEntity(entity),
                 profilePicture = entity.profile_picture,
                 birthdate = null,
                 email = emailMapper.mapFromEntity(entity),
                 archived = entity.archived
             )
-        }
-        return SinglePersonDetails(null, null, null, null, null, null, null)
     }
 
 }

@@ -1,34 +1,51 @@
 package com.example.breezepoc.datasource.network.mappers.people
 
 import com.example.breezepoc.datasource.cache.GetAllPeople
+import com.example.breezepoc.datasource.network.mappers.person.AddressNetworkMapper
+import com.example.breezepoc.datasource.network.mappers.person.PhoneNetworkMapper
 import com.example.breezepoc.datasource.network.model.PeopleDto
 import com.example.breezepoc.domain.model.PeopleList.Person
 import com.example.breezepoc.domain.model.util.DtoMapper
 
 class PeopleNetworkMapper constructor(
-    private val personDetailsNetworkMapper: PersonDetailsNetworkMapper
+    private val nameNetworkMapper: NameNetworkMapper,
+    private val phoneNetworkMapper: PhoneNetworkMapper,
+    private val addressNetworkMapper: AddressNetworkMapper,
+    private val emailNetworkMapper: EmailNetworkMapper
 ): DtoMapper<PeopleDto, Person> {
 
     override fun mapToDomainModel(model: PeopleDto?): Person {
         if (model != null) {
             return Person(
                 id = model.id,
-                personDetails = personDetailsNetworkMapper.mapToDomainModel(model.personDetails)
+                archived = model.archived,
+                birthdate = model.birthdate,
+                address = addressNetworkMapper.mapToDomainModel(model.address),
+                email = emailNetworkMapper.mapToDomainModel(model.email),
+                phone = phoneNetworkMapper.mapToDomainModel(model.phone),
+                name = nameNetworkMapper.mapToDomainModel(model.name),
+                profilePicture = model.profilePicture
             )
         }
         // TODO(Probably don't need wrapped if)
-        return Person(0, null)
+        return Person(0, false, null, null, null, null, null, null)
     }
 
     override fun mapFromDomainModel(domainModel: Person?): PeopleDto {
         if (domainModel != null) {
             return PeopleDto(
                 id = domainModel.id,
-                personDetails = personDetailsNetworkMapper.mapFromDomainModel(domainModel.personDetails)
+                archived = domainModel.archived,
+                birthdate = domainModel.birthdate,
+                address = addressNetworkMapper.mapFromDomainModel(domainModel.address),
+                email = emailNetworkMapper.mapFromDomainModel(domainModel.email),
+                phone = phoneNetworkMapper.mapFromDomainModel(domainModel.phone),
+                name = nameNetworkMapper.mapFromDomainModel(domainModel.name),
+                profilePicture = domainModel.profilePicture
             )
         }
         // TODO(Probably don't need wrapped if)
-        return PeopleDto(0, null)
+        return PeopleDto(0, false, null, null, null, null, null, null)
     }
 
     fun mapToDomainList(initial: List<PeopleDto>): List<Person> {
@@ -38,7 +55,13 @@ class PeopleNetworkMapper constructor(
     fun mapFromEntity(entity: GetAllPeople): Person {
             return Person(
                 id = entity.id,
-                personDetails = personDetailsNetworkMapper.mapFromEntity(entity)
+                archived = entity.archived,
+                birthdate = entity.birthdate,
+                address = addressNetworkMapper.mapFromEntity(entity),
+                email = emailNetworkMapper.mapFromEntity(entity),
+                phone = phoneNetworkMapper.mapFromEntity(entity),
+                name = nameNetworkMapper.mapFromEntity(entity.first_name, entity.last_name, entity.middle_name, entity.maiden_name, entity.nick_name),
+                profilePicture = entity.profile_picture
             )
     }
 

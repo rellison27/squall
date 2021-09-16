@@ -9,6 +9,24 @@ data class PeopleDto(
     @SerialName("id")
     val id: Long,
 
-    @SerialName("person_details")
-    val personDetails: PeopleDetailsDto?
+    @SerialName("archived")
+    val archived: Boolean?,
+
+    @SerialName("birthdate")
+    val birthdate: Long?,
+
+    @SerialName("address")
+    val address: AddressDto?,
+
+    @SerialName("email")
+    val email: EmailDto? = null,
+
+    @SerialName("phone")
+    val phone: PhoneDto? = null,
+
+    @SerialName("name")
+    val name: NameDto? = null,
+
+    @SerialName("profile_photo")
+    val profilePicture: String?,
 )

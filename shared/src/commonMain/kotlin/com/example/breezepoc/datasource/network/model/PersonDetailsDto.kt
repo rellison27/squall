@@ -13,7 +13,7 @@ data class PersonDetailsDto(
     val profilePicture: String?,
 
     @SerialName("email")
-    val email: PersonEmailDto?,
+    val email: EmailDto?,
 
     @SerialName("archived")
     val archived: Boolean?,
@@ -25,5 +25,5 @@ data class PersonDetailsDto(
     val birthdate: String?,
 
     @SerialName("phone")
-    val phone: PersonPhoneDto?
+    val phone: PhoneDto?
 )

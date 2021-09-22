@@ -6,6 +6,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.breezepoc.android.presentation.PersonImage
 import com.example.breezepoc.android.presentation.theme.AppTheme
 import com.example.breezepoc.domain.model.Person.SinglePerson
 
@@ -19,9 +20,7 @@ fun PersonDetailScreen(
         if (person == null) {
             Text("ERROR ${person}")
         } else {
-            Column {
-                Text("PersonDetailScreen: ${person.personDetails?.name?.first} ${person.personDetails?.name?.last}")
-            }
+            PersonImage(url = person.personDetails?.profilePicture, contentDescription = person.personDetails?.name?.first)
         }
     }
 }

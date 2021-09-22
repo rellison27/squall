@@ -21,6 +21,5 @@ interface PeopleCache {
     // because prod doesn't have many people
     fun getAll(): List<Person>
 
-    @Throws(NullPointerException::class)
     fun get(personId: Int): SinglePerson?
 }

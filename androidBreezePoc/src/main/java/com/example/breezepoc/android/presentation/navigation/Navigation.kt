@@ -1,6 +1,8 @@
 package com.example.breezepoc.android.presentation.navigation
 
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.HiltViewModelFactory
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -14,6 +16,8 @@ import com.example.breezepoc.android.presentation.people_list.PeopleListScreen
 import com.example.breezepoc.android.presentation.people_list.PeopleListViewModel
 import com.example.breezepoc.android.presentation.person_detail.PersonDetailViewModel
 
+@ExperimentalComposeUiApi
+@ExperimentalMaterialApi
 @Composable
 fun Navigation(){
     val navController = rememberNavController()

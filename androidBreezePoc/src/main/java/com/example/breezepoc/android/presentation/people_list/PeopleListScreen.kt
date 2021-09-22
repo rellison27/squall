@@ -6,11 +6,16 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.breezepoc.android.presentation.theme.AppTheme
 
+@ExperimentalMaterialApi
+@ExperimentalComposeUiApi
 @Composable
 fun PeopleListScreen(
     onSelectPerson: (Int?) -> Unit,
@@ -47,24 +52,26 @@ fun PeopleListScreen(
         26308836,
         26308834
     )
-//    Text(text = "KtorTest: ${people.value?.getOrNull(1)?.id}")
-    LazyColumn (Modifier.fillMaxWidth()) {
-        items(peopleIds){personId ->
-            Row (
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable {
-                        onSelectPerson(personId)
-                    }
-                    ){
-                Text(
+    AppTheme(displayProgressBar = false) {
+        LazyColumn(Modifier.fillMaxWidth()) {
+            items(peopleIds) { personId ->
+                Row(
                     modifier = Modifier
-                        .padding(16.dp),
-                    text = "PersonId = ${personId}"
-                )
+                        .fillMaxWidth()
+                        .clickable {
+                            onSelectPerson(personId)
+                        }
+                ) {
+                    Text(
+                        modifier = Modifier
+                            .padding(16.dp),
+                        text = "PersonId = ${personId}"
+                    )
+                }
             }
         }
     }
+
 }
 
 //@Preview

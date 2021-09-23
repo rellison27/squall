@@ -29,7 +29,7 @@ val OpenSansTypography = Typography(
     ),
     h3 = TextStyle(
         fontFamily = OpenSans,
-        fontWeight = FontWeight.W500,
+        fontWeight = FontWeight.W600,
         fontSize = 20.sp,
     ),
     h4 = TextStyle(
@@ -39,7 +39,7 @@ val OpenSansTypography = Typography(
     ),
     h5 = TextStyle(
         fontFamily = OpenSans,
-        fontWeight = FontWeight.W400,
+        fontWeight = FontWeight.W600,
         fontSize = 16.sp,
     ),
     h6 = TextStyle(

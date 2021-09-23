@@ -18,17 +18,18 @@ import androidx.compose.ui.unit.dp
 import com.example.breezepoc.android.R
 import com.example.breezepoc.android.presentation.PERSON_IMAGE_LIST_HEIGHT
 import com.example.breezepoc.android.presentation.PersonImage
+import com.example.breezepoc.domain.model.PeopleList.Person
 import com.example.breezepoc.domain.model.Person.SinglePerson
 
 @Composable
 fun PersonCard(
-    person: SinglePerson?,
+    person: Person?,
     onClick: () -> Unit
 ) {
     val phone =
-        if (person?.personDetails?.phone?.mobile?.number == null) "Phone" else person?.personDetails?.phone?.mobile?.number
+        if (person?.phone?.mobile?.number == null) "Phone" else person?.phone?.mobile?.number
     val email =
-        if (person?.personDetails?.email?.address == null) "Email" else person?.personDetails?.email?.address
+        if (person?.email?.address == null) "Email" else person?.email?.address
     Card(
         shape = MaterialTheme.shapes.small,
         modifier = Modifier
@@ -48,11 +49,11 @@ fun PersonCard(
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             PersonImage(
-                url = person?.personDetails?.profilePicture,
-                contentDescription = person?.personDetails?.name?.first
+                url = person?.profilePicture,
+                contentDescription = person?.name?.first
             )
             Text(
-                "${person?.personDetails?.name?.first} ${person?.personDetails?.name?.last}",
+                "${person?.name?.first} ${person?.name?.last}",
                 style = MaterialTheme.typography.h5,
             )
             Column() {

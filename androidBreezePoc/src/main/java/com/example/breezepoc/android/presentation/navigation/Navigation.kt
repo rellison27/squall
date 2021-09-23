@@ -26,6 +26,7 @@ fun Navigation(){
             val factory = HiltViewModelFactory(LocalContext.current, navBackStackEntry)
             val viewModel: PeopleListViewModel = viewModel("PeopleListViewModel", factory)
             PeopleListScreen(
+                state = viewModel.state.value,
                 onSelectPerson = { personId ->
                     navController.navigate(Screen.personDetail.route + "/$personId")
                 },

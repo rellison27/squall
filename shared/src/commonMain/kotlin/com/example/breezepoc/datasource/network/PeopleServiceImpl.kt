@@ -60,7 +60,7 @@ class PeopleServiceImpl(
     }
 
     companion object {
-        const val BEARER = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkuYnJlZXplY2htcy5jb21cL2FwaVwvdjJcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjMyMzE3MDA2LCJleHAiOjE2MzIzMjA2MDYsIm5iZiI6MTYzMjMxNzAwNiwianRpIjoiYlhETm5Fb1JiZ3ZSYXVSeCIsInN1YiI6Nzc1MTc2LCJwcnYiOiI0YWMwNWMwZjhhYzA4ZjM2NGNiNGQwM2ZiOGUxZjYzMWZlYzMyMmU4In0.Ee-W5H2U7dxFh2UIoLCimwjSREchE7M98wASaRP8Nt8"
+        const val BEARER = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkuYnJlZXplY2htcy5jb21cL2FwaVwvdjJcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjMyNDE5Njk0LCJleHAiOjE2MzI0MjMyOTQsIm5iZiI6MTYzMjQxOTY5NCwianRpIjoidWpXMnNkdkM3RU1USUJBeCIsInN1YiI6Nzc1MTc2LCJwcnYiOiI0YWMwNWMwZjhhYzA4ZjM2NGNiNGQwM2ZiOGUxZjYzMWZlYzMyMmU4In0.Gau8dGjODX_ECKDccUKWxEHSzgP-KGLXxdswaEunimo"
         const val BASE_URL = "https://api.breezechms.com/api/v2/people"
         const val PEOPLE_PARAMS = "replacement?sort=[last_name:asc,first_name:asc]&filter[archived:exists]=false"
     }

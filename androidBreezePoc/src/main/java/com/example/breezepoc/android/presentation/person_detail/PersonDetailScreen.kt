@@ -21,7 +21,7 @@ fun PersonDetailScreen(
         if (person == null) {
             Text("ERROR ${person}")
         } else {
-           PersonCard(person = person, onClick = {})
+           Text(text = "${person?.personDetails?.name?.first} ${person?.personDetails?.name?.last}")
         }
     }
 }

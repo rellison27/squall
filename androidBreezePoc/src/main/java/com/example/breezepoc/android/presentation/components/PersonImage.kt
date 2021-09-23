@@ -52,8 +52,8 @@ fun PersonImage(
       }
       is ImagePainter.State.Loading -> {
         Box(modifier = Modifier
-          .fillMaxWidth()
-          .height(PERSON_IMAGE_HEIGHT.dp)
+          .size(PERSON_IMAGE_LIST_HEIGHT.dp)
+          .clip(CircleShape)
         ) {
           // empty for white background
         }

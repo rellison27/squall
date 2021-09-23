@@ -29,6 +29,7 @@ constructor(
 
     private fun loadPeople(){
         populatePeopleList.execute().onEach { dataState ->
+            state.value = state.value.copy(isLoading = dataState.isLoading)
             println("PeopleListVM: ${dataState.isLoading}")
 
             dataState.data?.let { people ->

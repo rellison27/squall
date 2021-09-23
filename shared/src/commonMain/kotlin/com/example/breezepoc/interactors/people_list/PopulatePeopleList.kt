@@ -4,6 +4,7 @@ import com.example.breezepoc.datasource.network.PeopleService
 import com.example.breezepoc.datasource.network.cache.PeopleCache
 import com.example.breezepoc.domain.model.PeopleList.Person
 import com.example.breezepoc.domain.model.util.DataState
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -25,6 +26,8 @@ class PopulatePeopleList(
             emit(DataState.data(message = null, data = cacheResults))
 
         } catch (e: Exception) {
+            val existingCache = peopleCache.getAll()
+            if(existingCache !== null) emit(DataState.data(message = null, data = existingCache))
             emit(DataState.error<List<Person>>(message = e.message ?: "Unknown Error"))
         }
     }

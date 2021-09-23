@@ -15,7 +15,7 @@ fun PeopleListScreen(
     onSelectPerson: (Long?) -> Unit,
 ) {
 
-    AppTheme(displayProgressBar = false) {
+    AppTheme(displayProgressBar = state.isLoading) {
         PeopleList(
             loading = state.isLoading,
             people = state.people,

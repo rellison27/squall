@@ -6,8 +6,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.breezepoc.domain.model.PeopleList.Person
-import com.example.breezepoc.domain.model.Person.SinglePerson
 import com.example.breezepoc.interactors.people_list.PopulatePeopleList
+import com.example.breezepoc.presentation.people_list.PeopleListState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

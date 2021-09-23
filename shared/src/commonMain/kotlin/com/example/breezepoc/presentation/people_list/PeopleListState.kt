@@ -1,4 +1,4 @@
-package com.example.breezepoc.android.presentation.people_list
+package com.example.breezepoc.presentation.people_list
 
 import com.example.breezepoc.domain.model.PeopleList.Person
 

@@ -7,6 +7,8 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import com.example.breezepoc.android.presentation.PERSON_IMAGE_LIST_HEIGHT
 import com.example.breezepoc.domain.model.PeopleList.Person
 
 @Composable
@@ -19,7 +21,7 @@ fun PeopleList(
         .background(color = MaterialTheme.colors.surface)
     ) {
         if (loading && people.isEmpty()) {
-            // Loading animation or something
+            LoadingPeopleListShimmer(imageHeight = PERSON_IMAGE_LIST_HEIGHT.dp)
         } else if (people.isEmpty()) {
             // nothing is here
         } else {

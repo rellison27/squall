@@ -18,6 +18,10 @@ class PopulatePeopleList(
         try {
             val people = peopleService.getPeople()
 
+
+            // delay 500ms so we can see loading
+            delay(5000)
+
             // insert people into cache
             peopleCache.insert(people)
 
@@ -27,6 +31,10 @@ class PopulatePeopleList(
 
         } catch (e: Exception) {
             val existingCache = peopleCache.getAll()
+
+            // delay 500ms so we can see loading offline too
+            delay(5000)
+
             if(existingCache !== null) emit(DataState.data(message = null, data = existingCache))
             emit(DataState.error<List<Person>>(message = e.message ?: "Unknown Error"))
         }

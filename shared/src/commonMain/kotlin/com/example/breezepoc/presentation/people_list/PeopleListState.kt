@@ -7,4 +7,13 @@ data class PeopleListState(
     val page: Int = 1,
     val query: String = "",
     val people: List<Person> = listOf(),
-)
+){
+    // Need secondary zero-arg constructor to init with no args in SwiftUI
+
+    constructor(): this(
+        isLoading = false,
+        page = 1,
+        query = "",
+        people = listOf()
+    )
+}

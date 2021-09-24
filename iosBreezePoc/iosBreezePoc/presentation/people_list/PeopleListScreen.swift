@@ -16,6 +16,8 @@ struct PeopleListScreen: View {
     private let cacheModule: CacheModule
     private let populatePeopleListModule: PopulatePeopleListModule
     
+    @ObservedObject var viewModel: PeopleListViewModel
+    
     init (
         networkModule: NetworkModule,
         cacheModule: CacheModule
@@ -23,10 +25,16 @@ struct PeopleListScreen: View {
         self.networkModule = networkModule
         self.cacheModule = cacheModule
         self.populatePeopleListModule = PopulatePeopleListModule(
-            networkModule: self.networkModule, cacheModule: self.cacheModule)
+            networkModule: self.networkModule,
+            cacheModule: self.cacheModule
+        )
+        self.viewModel = PeopleListViewModel(
+            populatePeopleList: populatePeopleListModule.populatePeopleList
+        )
     }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("People List Screen")
     }
 }
 

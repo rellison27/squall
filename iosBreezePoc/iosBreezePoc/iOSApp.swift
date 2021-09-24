@@ -4,14 +4,14 @@ import shared
 @main
 struct iOSApp: App {
     
-    private let networkModuloe = NetworkModule()
+    private let networkModule = NetworkModule()
     private let cacheModule = CacheModule()
     
 	var body: some Scene {
 		WindowGroup {
             PeopleListScreen(
-                networkModule: <#T##NetworkModule#>,
-                cacheModule: <#T##CacheModule#>
+                networkModule: networkModule,
+                cacheModule: cacheModule
             )
         }
 	}

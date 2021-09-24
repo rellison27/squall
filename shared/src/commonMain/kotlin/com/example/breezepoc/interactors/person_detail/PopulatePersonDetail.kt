@@ -2,7 +2,9 @@ package com.example.breezepoc.interactors.person_detail
 
 import com.example.breezepoc.datasource.network.cache.PeopleCache
 import com.example.breezepoc.domain.model.Person.SinglePerson
+import com.example.breezepoc.domain.model.util.CommonFlow
 import com.example.breezepoc.domain.model.util.DataState
+import com.example.breezepoc.domain.model.util.asCommonFlow
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -11,7 +13,7 @@ class PopulatePersonDetail(
 ) {
     fun execute(
         personId: Int,
-    ): Flow<DataState<SinglePerson>> = flow {
+    ): CommonFlow<DataState<SinglePerson>> = flow {
         emit(DataState.loading())
         try {
 
@@ -21,5 +23,5 @@ class PopulatePersonDetail(
         } catch (e: Exception) {
             emit(DataState.error<SinglePerson>(message = e.message ?: "Unknown Error"))
         }
-    }
+    }.asCommonFlow()
 }

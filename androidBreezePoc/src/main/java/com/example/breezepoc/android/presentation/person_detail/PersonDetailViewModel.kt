@@ -29,7 +29,7 @@ constructor(
     }
 
     private fun populatePersonDetail(personId: Int) {
-        populatePersonDetail.execute(personId = personId).onEach { dataState ->
+        populatePersonDetail.execute(personId = personId).collectCommon(viewModelScope) { dataState ->
             println("PersonDetailVM: loading: ${dataState.isLoading}")
 
             dataState.data?.let { person ->
@@ -40,6 +40,6 @@ constructor(
             dataState.message?.let { message ->
                 println("PersonDetailVM: error: ${message}")
             }
-        }.launchIn(viewModelScope)
+        }
     }
 }

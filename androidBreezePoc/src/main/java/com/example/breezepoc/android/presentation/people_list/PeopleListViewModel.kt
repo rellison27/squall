@@ -54,7 +54,7 @@ constructor(
         //  some state in side of this execute fun below. it also needs to be added to the model
         //  potentially
         //  )
-        populatePeopleList.execute().onEach { dataState ->
+        populatePeopleList.execute().collectCommon(viewModelScope) { dataState ->
             state.value = state.value.copy(isLoading = dataState.isLoading)
             println("PeopleListVM: ${dataState.isLoading}")
 
@@ -66,7 +66,7 @@ constructor(
             dataState.message?.let { message ->
                 println("PeopleListVM: error: ${message}")
             }
-        }.launchIn(viewModelScope)
+        }
     }
 
     private fun appendPeople(people: List<Person>){

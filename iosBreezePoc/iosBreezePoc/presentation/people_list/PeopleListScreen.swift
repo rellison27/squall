@@ -34,8 +34,18 @@ struct PeopleListScreen: View {
     }
     
     var body: some View {
-        Text("People List Screen")
-    }
+           VStack{
+               Text("\(viewModel.state.page)")
+               Button(
+                   action: {
+                       viewModel.updateState(page: Int(viewModel.state.page) + 1)
+                   },
+                  label: {
+                       Text("Increment page")
+                  }
+               )
+           }
+       }
 }
 
 //struct PeopleListScreen_Previews: PreviewProvider {

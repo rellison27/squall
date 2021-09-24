@@ -60,10 +60,17 @@ class PeopleListViewModel: ObservableObject {
     }
     
     private func appendPeople(people: [Person]){
-        for person in people {
-            print("person id: \(person.id)")
-        }
         // TODO("append people to state")
+        var currentState = (self.state.copy() as! PeopleListState)
+        var currentPeople = currentState.people
+        currentPeople.append(contentsOf: people)
+        self.state = self.state.doCopy(
+            isLoading: currentState.isLoading,
+            page: currentState.page,
+            query: currentState.query,
+            people: currentPeople
+        )
+        currentState = (self.state.copy() as! PeopleListState)
     }
     
     

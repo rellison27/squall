@@ -8,16 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
-		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
+		28FC08EC26FE2E6C00D8C365 /* PeopleListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FC08EB26FE2E6C00D8C365 /* PeopleListScreen.swift */; };
 		EBFB0820D77EF9123F11B9C6 /* Pods_iosBreezePoc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4507451698501A056DD03002 /* Pods_iosBreezePoc.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
+		28FC08EB26FE2E6C00D8C365 /* PeopleListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListScreen.swift; sourceTree = "<group>"; };
 		329C092310FAC7A8588D5C39 /* Pods-iosBreezePoc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosBreezePoc.release.xcconfig"; path = "Target Support Files/Pods-iosBreezePoc/Pods-iosBreezePoc.release.xcconfig"; sourceTree = "<group>"; };
 		4507451698501A056DD03002 /* Pods_iosBreezePoc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosBreezePoc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF7B242A565900829871 /* iosBreezePoc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosBreezePoc.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7808EFE9A9C4906B7F512BD8 /* Pods-iosBreezePoc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosBreezePoc.debug.xcconfig"; path = "Target Support Files/Pods-iosBreezePoc/Pods-iosBreezePoc.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -40,6 +40,14 @@
 				4507451698501A056DD03002 /* Pods_iosBreezePoc.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		28FC08EA26FE2E4000D8C365 /* people_list */ = {
+			isa = PBXGroup;
+			children = (
+				28FC08EB26FE2E6C00D8C365 /* PeopleListScreen.swift */,
+			);
+			path = people_list;
 			sourceTree = "<group>";
 		};
 		47B64D20BF512AB92824628A /* Pods */ = {
@@ -72,7 +80,7 @@
 		7555FF7D242A565900829871 /* iosBreezePoc */ = {
 			isa = PBXGroup;
 			children = (
-				7555FF82242A565900829871 /* ContentView.swift */,
+				28FC08EA26FE2E4000D8C365 /* people_list */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 			);
@@ -174,7 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
-				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				28FC08EC26FE2E6C00D8C365 /* PeopleListScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

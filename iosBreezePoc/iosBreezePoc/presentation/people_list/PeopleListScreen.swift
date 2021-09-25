@@ -36,8 +36,11 @@ struct PeopleListScreen: View {
     var body: some View {
         List{
             ForEach(viewModel.state.people, id: \.self.id){ person in
-                Text(person.name?.first ?? "none")
+                PersonCard(person: person)
+                .listRowInsets(EdgeInsets())
+                .padding(.top, 10)
             }
+            
         }
        }
 }

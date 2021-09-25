@@ -9,3 +9,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+iosBreezePoc/Pods/SDWebImage/
+iosBreezePoc/Pods/SDWebImageSwiftUI/

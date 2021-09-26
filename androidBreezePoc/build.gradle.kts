@@ -8,6 +8,7 @@ plugins {
 
 dependencies {
     implementation(project(":shared"))
+    implementation(Accompanist.navAnimation)
     implementation(Coil.coil)
     implementation("com.google.android.material:material:1.4.0")
     implementation("androidx.appcompat:appcompat:1.3.1")
@@ -57,7 +58,7 @@ dependencies {
 }
 
 android {
-    compileSdkVersion(30)
+    compileSdkVersion(31)
     defaultConfig {
         applicationId = "com.example.breezepoc.android"
         minSdkVersion(21)

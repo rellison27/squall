@@ -34,7 +34,7 @@ class PopulatePeopleList(
 
             // delay 500ms so we can see loading offline too
             delay(5000)
-            if(existingCache !== null) emit(DataState.data(message = null, data = existingCache))
+            emit(DataState.data(message = null, data = existingCache))
             emit(DataState.error<List<Person>>(message = e.message ?: "Unknown Error"))
         }
     }.asCommonFlow()

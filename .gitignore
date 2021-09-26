@@ -11,3 +11,5 @@
 local.properties
 iosBreezePoc/Pods/SDWebImage/
 iosBreezePoc/Pods/SDWebImageSwiftUI/
+iosBreezePoc/Pods/Target Support Files/SDWebImage/
+iosBreezePoc/Pods/Target Support Files/SDWebImageSwiftUI/

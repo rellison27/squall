@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun LoadingPeopleListShimmer(
     imageHeight: Dp,
-    padding: Dp = 16.dp
+    padding: Dp = 4.dp
 ){
     BoxWithConstraints(
         modifier = Modifier.fillMaxSize()
@@ -57,7 +57,7 @@ fun LoadingPeopleListShimmer(
         )
 
         LazyColumn {
-            items(10){
+            items(15){
                 ShimmerPersonCardItem(
                     colors = colors,
                     xShimmer = xCardShimmer.value,

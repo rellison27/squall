@@ -3,6 +3,7 @@ package com.example.breezepoc.android.presentation.navigation
 import androidx.compose.animation.*
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -27,27 +28,29 @@ import com.google.accompanist.navigation.animation.navigation
 @ExperimentalMaterialApi
 @Composable
 fun Navigation(){
+BoxWithConstraints() {
+    println("maxWidth: ${constraints.maxWidth}")
     val navController = rememberAnimatedNavController()
     AnimatedNavHost(navController = navController, startDestination = Screen.PeopleList.route) {
         composable(
             route = Screen.PeopleList.route,
             exitTransition = {_, _ ->
                 slideOutHorizontally(
-                    targetOffsetX = { -300 },
+                    targetOffsetX = { -constraints.maxWidth },
                     animationSpec = tween(
                         durationMillis = 300,
                         easing = FastOutSlowInEasing
                     )
-                ) + fadeOut(animationSpec = tween(300))
+                )
             },
             popEnterTransition = { _, _ ->
                 slideInHorizontally(
-                    initialOffsetX = { -300 },
+                    initialOffsetX = { -constraints.maxWidth  },
                     animationSpec = tween(
                         durationMillis = 300,
                         easing = FastOutSlowInEasing
                     )
-                ) + fadeIn(animationSpec = tween(300))
+                )
             },
         ) { navBackStackEntry ->
             val factory = HiltViewModelFactory(LocalContext.current, navBackStackEntry)
@@ -67,21 +70,21 @@ fun Navigation(){
             }),
             enterTransition = { _, _ ->
                 slideInHorizontally(
-                    initialOffsetX = { 300 },
+                    initialOffsetX = { constraints.maxWidth },
                     animationSpec = tween(
                         durationMillis = 300,
                         easing = FastOutSlowInEasing
                     )
-                ) + fadeIn(animationSpec = tween(300))
+                )
             },
             popExitTransition = { _, _ ->
                 slideOutHorizontally(
-                    targetOffsetX = { 300 },
+                    targetOffsetX = { constraints.maxWidth },
                     animationSpec = tween(
                         durationMillis = 300,
                         easing = FastOutSlowInEasing
                     )
-                ) + fadeOut(animationSpec = tween(300))
+                )
             }
         ) { navBackStackEntry ->
             val factory = HiltViewModelFactory(LocalContext.current, navBackStackEntry)
@@ -89,4 +92,6 @@ fun Navigation(){
             PersonDetailScreen(person = viewModel.person.value)
         }
     }
+}
+
 }

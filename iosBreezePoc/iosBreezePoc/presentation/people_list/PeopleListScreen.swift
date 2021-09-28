@@ -34,15 +34,21 @@ struct PeopleListScreen: View {
     }
     
     var body: some View {
-        List{
-            ForEach(viewModel.state.people, id: \.self.id){ person in
-                PersonCard(person: person)
-                .listRowInsets(EdgeInsets())
-                .padding(.top, 10)
+        NavigationView{
+            List{
+                ForEach(viewModel.state.people, id: \.self.id){ person in
+                    NavigationLink(destination: Text("\(person.name?.first ?? "Frist Name")")){
+                        PersonCard(person: person)
+                    }
+                    .listRowInsets(EdgeInsets())
+                    .padding(.top, 10)
+                }
             }
-            
+            .listStyle(PlainListStyle())
         }
-       }
+        .navigationBarHidden(true)
+        .navigationViewStyle(StackNavigationViewStyle())
+   }
 }
 
 //struct PeopleListScreen_Previews: PreviewProvider {

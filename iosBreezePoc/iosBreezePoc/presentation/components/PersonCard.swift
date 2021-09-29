@@ -11,7 +11,7 @@ import shared
 import SDWebImageSwiftUI
 
 struct PersonCard: View {
-   
+    
     let person: Person
     
     init(person: Person){
@@ -20,53 +20,45 @@ struct PersonCard: View {
     
     var body: some View {
         HStack{
-        WebImage(url: URL(string: "https://files.breezechms.com/\(person.profilePicture ?? "")" ))
+            WebImage(url: URL(string: "https://files.breezechms.com/\(person.profilePicture ?? "")" ))
                 .resizable()
-            .interpolation(.medium)
-            .placeholder{
-                Image(systemName: "person.circle.fill")
-                    .resizable()
-                    .interpolation(.medium)
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 90, height: 60, alignment: .bottom)
-                    .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
-                    .foregroundColor(.gray)
-            } //Placeholder Image
-                    .indicator(.activity)
-                    .transition(.fade(duration: 0.5))
-                    .aspectRatio(contentMode: .fit)
-                    // .scaledToFit() // 1
-            .frame(width: 90, height: 60, alignment: .topLeading) // 2
-                    .clipShape(Circle())
-
+                .interpolation(.medium)
+                .placeholder{
+                    Image(systemName: "person.circle.fill")
+                        .resizable()
+                        .interpolation(.medium)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 90, height: 60, alignment: .bottom)
+                        .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                        .foregroundColor(.gray)
+                }
+                .indicator(.activity)
+                .transition(.fade(duration: 0.5))
+                .aspectRatio(contentMode: .fit)
+                // .scaledToFit() // 1
+                .frame(width: 90, height: 60, alignment: .topLeading) // 2
+                .clipShape(Circle())
+            
+            // I should not hardcode the width but I don't know a better way currently
             AdaptiveStack{
                 Text(person.name?.first ?? "")
                     .font(.body)
                     .bold()
+                    .frame(width: 85, alignment: .leading)
                 Text(person.name?.last ?? "")
                     .font(.body)
                     .bold()
+                    .frame(width: 85, alignment: .leading)
             }
-            Spacer()
             VStack(alignment: .leading){
                 Text(person.phone?.mobile?.number  ?? "Phone")
                     .font(.caption)
                 Text(person.email?.address ?? "Email")
                     .font(.caption2)
             }
-            Spacer()
-            Image(systemName: "chevron.right")
-                .resizable()
-                .interpolation(.medium)
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 20, height: 20, alignment: .trailing)
-                .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
-                .foregroundColor(.gray)
+            .padding(.leading, 50)
         }
-        .padding(.top, 6)
-        .padding(.leading, 6)
-        .padding(.trailing, 6)
-        .padding(.bottom, 6)
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 

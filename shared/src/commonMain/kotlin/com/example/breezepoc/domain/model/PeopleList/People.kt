@@ -45,6 +45,7 @@ data class Person(
     val phone: Phone?,
     val name: Name?,
     val profilePicture: String?,
+    val familyRole: String?
 )
 
 data class People(

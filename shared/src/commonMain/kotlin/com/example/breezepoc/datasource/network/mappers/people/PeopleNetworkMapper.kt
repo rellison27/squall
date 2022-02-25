@@ -24,11 +24,12 @@ class PeopleNetworkMapper constructor(
                 email = emailNetworkMapper.mapToDomainModel(model.email),
                 phone = phoneNetworkMapper.mapToDomainModel(model.phone),
                 name = nameNetworkMapper.mapToDomainModel(model.name),
-                profilePicture = model.profilePicture
+                profilePicture = model.profilePicture,
+                familyRole = model.familyRole
             )
         }
         // TODO(Probably don't need wrapped if)
-        return Person(0, false, null, null, null, null, null, null)
+        return Person(0, false, null, null, null, null, null, null, familyRole = null)
     }
 
     override fun mapFromDomainModel(domainModel: Person?): PeopleDto {
@@ -41,11 +42,12 @@ class PeopleNetworkMapper constructor(
                 email = emailNetworkMapper.mapFromDomainModel(domainModel.email),
                 phone = phoneNetworkMapper.mapFromDomainModel(domainModel.phone),
                 name = nameNetworkMapper.mapFromDomainModel(domainModel.name),
-                profilePicture = domainModel.profilePicture
+                profilePicture = domainModel.profilePicture,
+                familyRole = domainModel.familyRole
             )
         }
         // TODO(Probably don't need wrapped if)
-        return PeopleDto(0, false, null, null, null, null, null, null)
+        return PeopleDto(0, false, null, null, null, null, null, null, familyRole = null)
     }
 
     fun mapToDomainList(initial: List<PeopleDto>): List<Person> {
@@ -61,7 +63,8 @@ class PeopleNetworkMapper constructor(
                 email = emailNetworkMapper.mapFromEntity(entity),
                 phone = phoneNetworkMapper.mapFromEntity(entity),
                 name = nameNetworkMapper.mapFromEntity(entity.first_name, entity.last_name, entity.middle_name, entity.maiden_name, entity.nick_name),
-                profilePicture = entity.profile_picture
+                profilePicture = entity.profile_picture,
+                familyRole = entity.family_role
             )
     }
 

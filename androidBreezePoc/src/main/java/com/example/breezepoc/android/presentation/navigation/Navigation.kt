@@ -13,8 +13,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import com.google.accompanist.navigation.animation.composable
-import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.breezepoc.android.presentation.person_detail.PersonDetailScreen
 import com.example.breezepoc.android.presentation.people_list.PeopleListScreen
 import com.example.breezepoc.android.presentation.people_list.PeopleListViewModel
@@ -34,7 +34,7 @@ BoxWithConstraints() {
     AnimatedNavHost(navController = navController, startDestination = Screen.PeopleList.route) {
         composable(
             route = Screen.PeopleList.route,
-            exitTransition = {_, _ ->
+            exitTransition = {
                 slideOutHorizontally(
                     targetOffsetX = { -constraints.maxWidth },
                     animationSpec = tween(
@@ -43,7 +43,7 @@ BoxWithConstraints() {
                     )
                 )
             },
-            popEnterTransition = { _, _ ->
+            popEnterTransition = {
                 slideInHorizontally(
                     initialOffsetX = { -constraints.maxWidth  },
                     animationSpec = tween(
@@ -68,7 +68,7 @@ BoxWithConstraints() {
             {
                 type = NavType.IntType
             }),
-            enterTransition = { _, _ ->
+            enterTransition = {
                 slideInHorizontally(
                     initialOffsetX = { constraints.maxWidth },
                     animationSpec = tween(
@@ -77,7 +77,7 @@ BoxWithConstraints() {
                     )
                 )
             },
-            popExitTransition = { _, _ ->
+            popExitTransition = {
                 slideOutHorizontally(
                     targetOffsetX = { constraints.maxWidth },
                     animationSpec = tween(

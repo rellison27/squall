@@ -13,10 +13,10 @@ data class PeopleDto(
     val archived: Boolean?,
 
     @SerialName("birthdate")
-    val birthdate: Long?,
+    val birthdate: Long? = null,
 
     @SerialName("address")
-    val address: AddressDto?,
+    val address: AddressDto? = null,
 
     @SerialName("email")
     val email: EmailDto? = null,
@@ -29,4 +29,7 @@ data class PeopleDto(
 
     @SerialName("profile_photo")
     val profilePicture: String?,
+
+    @SerialName("family_role")
+    val familyRole: String? = null,
 )

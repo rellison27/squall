@@ -71,7 +71,8 @@ struct PersonCard_Previews: PreviewProvider {
         email: nil,
         phone: nil,
         name: nil,
-        profilePicture: "https://files.breezechms.com/img/profiles/upload/5b74385157c66.jpg"
+        profilePicture: "https://files.breezechms.com/img/profiles/upload/5b74385157c66.jpg",
+        familyRole: nil
     )
     static var previews: some View {
         PersonCard(person: person)

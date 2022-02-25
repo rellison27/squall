@@ -1,13 +1,18 @@
 package com.example.breezepoc.datasource.network
 
+import com.example.breezepoc.datasource.network.mappers.login.TokenMapper
 import com.example.breezepoc.datasource.network.mappers.people.*
 import com.example.breezepoc.datasource.network.mappers.person.*
+import com.example.breezepoc.datasource.network.model.AuthResponse
 import com.example.breezepoc.datasource.network.model.PeopleResponse
 import com.example.breezepoc.datasource.network.model.PersonResponse
+import com.example.breezepoc.domain.model.Login.Auth
 import com.example.breezepoc.domain.model.PeopleList.Person
 import com.example.breezepoc.domain.model.Person.SinglePerson
 import io.ktor.client.*
 import io.ktor.client.request.*
+import io.ktor.client.statement.*
+import io.ktor.http.*
 
 class PeopleServiceImpl(
     private val httpClient: HttpClient,
@@ -39,12 +44,24 @@ class PeopleServiceImpl(
         )
     val personNetworkMapper: PersonNetworkMapper = PersonNetworkMapper(singlePersonDetailsNetworkMapper)
 
+    // for Auth
+    val tokenMapper: TokenMapper = TokenMapper()
+
     override suspend fun getPeople(): List<Person> {
+        val response: AuthResponse = httpClient.post<AuthResponse> {
+            url("https://api.breezechms.com/api/v2/auth/login")
+            contentType(ContentType.Application.Json)
+            body = Auth("demo","demo","demo")
+        }
+        val mappedToken = tokenMapper.mapToDomainModel(response)
+        println("Token $mappedToken")
+        BEARER = "Bearer ${mappedToken.accessToken}"
         val people = httpClient.get<PeopleResponse> {
             url("$BASE_URL/$PEOPLE_PARAMS")
             header("Authorization", BEARER,)
         }.data
         val mapped = peopleNetworkMapper.mapToDomainList(people)
+        println("Testing123 $mapped")
         return mapped
     }
 
@@ -60,7 +77,7 @@ class PeopleServiceImpl(
     }
 
     companion object {
-        const val BEARER = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkuYnJlZXplY2htcy5jb21cL2FwaVwvdjJcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjMyNTE0ODQ1LCJleHAiOjE2MzI1MTg0NDUsIm5iZiI6MTYzMjUxNDg0NSwianRpIjoia1FDN1N3bGVKTjVzUm9jOCIsInN1YiI6Nzc1MTc2LCJwcnYiOiI0YWMwNWMwZjhhYzA4ZjM2NGNiNGQwM2ZiOGUxZjYzMWZlYzMyMmU4In0.QGztwPucHPWf1DR-QLksdxN1Tn1d2xG7JGfro6w2cyQ"
+         var BEARER = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkuYnJlZXplY2htcy5jb21cL2FwaVwvdjJcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjM0NzU4MzkwLCJleHAiOjE2MzQ3NjE5OTAsIm5iZiI6MTYzNDc1ODM5MCwianRpIjoiSktCNGFReUxrZ2VYSE1rNSIsInN1YiI6Nzc1MTc2LCJwcnYiOiI0YWMwNWMwZjhhYzA4ZjM2NGNiNGQwM2ZiOGUxZjYzMWZlYzMyMmU4In0.y4tRRRFbD9DbF7iK1tA5NbZRnaEYy1kHPBNizTA0wJ4"
         const val BASE_URL = "https://api.breezechms.com/api/v2/people"
         const val PEOPLE_PARAMS = "replacement?sort=[last_name:asc,first_name:asc]&filter[archived:exists]=false"
     }

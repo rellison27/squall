@@ -51,7 +51,8 @@ class PeopleCacheImpl(
             profile_picture = person.profilePicture,
             archived = person.archived,
             birthdate = person.birthdate,
-            email = person.email?.address
+            email = person.email?.address,
+            family_role = person.familyRole
         )
     }
 

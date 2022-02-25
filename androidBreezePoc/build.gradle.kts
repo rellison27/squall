@@ -10,9 +10,9 @@ dependencies {
     implementation(project(":shared"))
     implementation(Accompanist.navAnimation)
     implementation(Coil.coil)
-    implementation("com.google.android.material:material:1.4.0")
-    implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.0")
+    implementation("com.google.android.material:material:1.5.0")
+    implementation("androidx.appcompat:appcompat:1.4.1")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.3")
     implementation(Kotlinx.datetime)
     implementation(Compose.runtime)
     implementation(Compose.runtimeLiveData)
@@ -27,22 +27,22 @@ dependencies {
 
 
 
-    implementation("com.google.dagger:hilt-android:2.36")
-    kapt("com.google.dagger:hilt-compiler:2.36")
+    implementation("com.google.dagger:hilt-android:2.41")
+    kapt("com.google.dagger:hilt-compiler:2.41")
 
     // For instrumentation tests
-    androidTestImplementation("com.google.dagger:hilt-android-testing:2.36")
-    kaptAndroidTest("com.google.dagger:hilt-compiler:2.36")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.41")
+    kaptAndroidTest("com.google.dagger:hilt-compiler:2.41")
 
     // For local unit tests
-    testImplementation("com.google.dagger:hilt-android-testing:2.36")
-    kaptTest("com.google.dagger:hilt-compiler:2.36")
+    testImplementation("com.google.dagger:hilt-android-testing:2.41")
+    kaptTest("com.google.dagger:hilt-compiler:2.41")
     implementation(Hilt.hiltNavigation)
 
     implementation(Ktor.android)
 
     debugImplementation(SquareUp.leakCanary)
-    implementation("androidx.compose.ui:ui-tooling:1.0.1")
+    implementation("androidx.compose.ui:ui-tooling:1.1.1")
     val navVersion = "2.3.5"
 
     // Java language implementation
@@ -62,7 +62,7 @@ android {
     defaultConfig {
         applicationId = "com.example.breezepoc.android"
         minSdkVersion(21)
-        targetSdkVersion(30)
+        targetSdkVersion(31)
         versionCode = 1
         versionName = "1.0"
     }

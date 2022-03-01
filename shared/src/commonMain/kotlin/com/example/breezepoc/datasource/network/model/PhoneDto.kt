@@ -7,21 +7,21 @@ import kotlinx.serialization.Serializable
 data class PhoneDto(
 
     @SerialName("home")
-    val home: NumberDto?,
+    val home: NumberDto? = null,
 
     @SerialName("work")
-    val work: NumberDto?,
+    val work: NumberDto? = null,
 
     @SerialName("mobile")
-    val mobile: NumberDto?
+    val mobile: NumberDto? = null
 )
 
 @Serializable
 data class NumberDto(
 
     @SerialName("number")
-    val number: String?,
+    val number: String? = null,
 
     @SerialName("private")
-    val private: Boolean?
+    val private: Boolean? = null
 )

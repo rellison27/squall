@@ -77,7 +77,7 @@ class PeopleServiceImpl(
     }
 
     companion object {
-         var BEARER = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkuYnJlZXplY2htcy5jb21cL2FwaVwvdjJcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjM0NzU4MzkwLCJleHAiOjE2MzQ3NjE5OTAsIm5iZiI6MTYzNDc1ODM5MCwianRpIjoiSktCNGFReUxrZ2VYSE1rNSIsInN1YiI6Nzc1MTc2LCJwcnYiOiI0YWMwNWMwZjhhYzA4ZjM2NGNiNGQwM2ZiOGUxZjYzMWZlYzMyMmU4In0.y4tRRRFbD9DbF7iK1tA5NbZRnaEYy1kHPBNizTA0wJ4"
+         var BEARER = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkuYnJlZXplY2htcy5jb21cL2FwaVwvdjJcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjQ2MjMwMTI5LCJleHAiOjE2NDYyMzM3MjksIm5iZiI6MTY0NjIzMDEyOSwianRpIjoiTE9zUXB0NkhNREI2dFlobCIsInN1YiI6MzU1MzQ2LCJwcnYiOiI0YWMwNWMwZjhhYzA4ZjM2NGNiNGQwM2ZiOGUxZjYzMWZlYzMyMmU4In0.cbMYgdc9e5cvDTwjOtj5iW_ckDz2xnT8p1J0Y13_yjA"
         const val BASE_URL = "https://api.breezechms.com/api/v2/people"
         const val PEOPLE_PARAMS = "replacement?filter[or]=(filter[phone.mobile.number:exists]=true,filter[email.address:exists]=true,filter[birthdate:exists]=true,filter[family.role:exists]=true,filter[address.street:exists]=true)&filter[archived:exists]=false&sort=[last_name:asc,first_name:asc]"
     }

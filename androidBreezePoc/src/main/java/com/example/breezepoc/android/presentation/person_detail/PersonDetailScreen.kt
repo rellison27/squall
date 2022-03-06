@@ -11,6 +11,7 @@ import com.example.breezepoc.android.presentation.people_list.components.PersonC
 import com.example.breezepoc.android.presentation.theme.AppTheme
 import com.example.breezepoc.domain.model.Person.SinglePerson
 
+@ExperimentalStdlibApi
 @ExperimentalMaterialApi
 @ExperimentalComposeUiApi
 @Composable
@@ -21,7 +22,7 @@ fun PersonDetailScreen(
         if (person == null) {
             Text("ERROR ${person}")
         } else {
-           Text(text = "${person?.personDetails?.name?.first} ${person?.personDetails?.name?.last}")
+           PersonView(person = person)
         }
     }
 }

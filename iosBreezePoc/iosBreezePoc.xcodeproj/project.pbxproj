@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
+		2836550227D7FA5900B2D555 /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2836550127D7FA5900B2D555 /* PersonView.swift */; };
+		2836550527D80E3800B2D555 /* PersonDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2836550427D80E3800B2D555 /* PersonDetailViewModel.swift */; };
+		2836550927D85DF400B2D555 /* PersonDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2836550827D85DF400B2D555 /* PersonDetailScreen.swift */; };
 		28FC08EC26FE2E6C00D8C365 /* PeopleListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FC08EB26FE2E6C00D8C365 /* PeopleListScreen.swift */; };
 		28FC08EE26FE339600D8C365 /* PeopleListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FC08ED26FE339600D8C365 /* PeopleListViewModel.swift */; };
 		28FC08F226FE7BEE00D8C365 /* PersonCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FC08F126FE7BEE00D8C365 /* PersonCard.swift */; };
@@ -17,6 +20,9 @@
 
 /* Begin PBXFileReference section */
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
+		2836550127D7FA5900B2D555 /* PersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonView.swift; sourceTree = "<group>"; };
+		2836550427D80E3800B2D555 /* PersonDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailViewModel.swift; sourceTree = "<group>"; };
+		2836550827D85DF400B2D555 /* PersonDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailScreen.swift; sourceTree = "<group>"; };
 		28FC08EB26FE2E6C00D8C365 /* PeopleListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListScreen.swift; sourceTree = "<group>"; };
 		28FC08ED26FE339600D8C365 /* PeopleListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListViewModel.swift; sourceTree = "<group>"; };
 		28FC08F126FE7BEE00D8C365 /* PersonCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCard.swift; sourceTree = "<group>"; };
@@ -48,6 +54,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2836550327D80E0C00B2D555 /* person_detail */ = {
+			isa = PBXGroup;
+			children = (
+				2836550427D80E3800B2D555 /* PersonDetailViewModel.swift */,
+				2836550827D85DF400B2D555 /* PersonDetailScreen.swift */,
+			);
+			path = person_detail;
+			sourceTree = "<group>";
+		};
 		28FC08EA26FE2E4000D8C365 /* people_list */ = {
 			isa = PBXGroup;
 			children = (
@@ -60,6 +75,7 @@
 		28FC08EF26FE34C100D8C365 /* presentation */ = {
 			isa = PBXGroup;
 			children = (
+				2836550327D80E0C00B2D555 /* person_detail */,
 				28FC08F026FE7BCF00D8C365 /* components */,
 				28FC08EA26FE2E4000D8C365 /* people_list */,
 			);
@@ -71,6 +87,7 @@
 			children = (
 				28FC08F126FE7BEE00D8C365 /* PersonCard.swift */,
 				28FC08F326FEAEF700D8C365 /* AdaptiveStack.swift */,
+				2836550127D7FA5900B2D555 /* PersonView.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -225,8 +242,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				28FC08F426FEAEF800D8C365 /* AdaptiveStack.swift in Sources */,
+				2836550527D80E3800B2D555 /* PersonDetailViewModel.swift in Sources */,
 				28FC08F226FE7BEE00D8C365 /* PersonCard.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				2836550227D7FA5900B2D555 /* PersonView.swift in Sources */,
+				2836550927D85DF400B2D555 /* PersonDetailScreen.swift in Sources */,
 				28FC08EE26FE339600D8C365 /* PeopleListViewModel.swift in Sources */,
 				28FC08EC26FE2E6C00D8C365 /* PeopleListScreen.swift in Sources */,
 			);

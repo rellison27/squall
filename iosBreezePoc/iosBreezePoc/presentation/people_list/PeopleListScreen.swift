@@ -37,7 +37,7 @@ struct PeopleListScreen: View {
         NavigationView{
             List{
                 ForEach(viewModel.state.people, id: \.self.id){ person in
-                    NavigationLink(destination: Text("\(person.name?.first ?? "Frist Name")")){
+                    NavigationLink(destination: PersonDetailScreen(personId: Int(person.id), cacheModule: self.cacheModule)){
                         PersonCard(person: person)
                     }
                     .listRowInsets(EdgeInsets())

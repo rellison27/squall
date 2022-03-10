@@ -32,7 +32,12 @@ struct PersonDetailScreen: View {
         )
     }
     var body: some View {
-        Text("ID: \(personId)")
+        if viewModel.state.person != nil {
+            Text(viewModel.state.person?.personDetails?.name?.first ?? "")
+        }else{
+            Text("Unable to retrive the Person selected")
+        }
+        
     }
 }
 //struct PersonDetailScreen_Previews: PreviewProvider {

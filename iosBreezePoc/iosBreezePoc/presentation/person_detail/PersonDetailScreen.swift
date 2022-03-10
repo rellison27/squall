@@ -33,7 +33,7 @@ struct PersonDetailScreen: View {
     }
     var body: some View {
         if viewModel.state.person != nil {
-            Text(viewModel.state.person?.personDetails?.name?.first ?? "")
+            PersonView(person: viewModel.state.person!)
         }else{
             Text("Unable to retrive the Person selected")
         }
